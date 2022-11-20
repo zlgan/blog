@@ -78,7 +78,7 @@ PS D:\workspace>
 2. 加入阿里云镜像
 
 ``` xml
-	 <mirror>
+    <mirror>
      <id>aliyunmaven</id>
      <mirrorOf>central</mirrorOf>
      <name>阿里云公共仓库</name>
