@@ -1,4 +1,4 @@
-## 使用vscode+markdown+picgo+阿里云oss 打造笔记系统
+# 使用vscode+markdown+picgo+阿里云oss 打造笔记系统
 1. 安装vscode
 2. 安装插件
    - markdown all in one (增强编辑器，支持快捷键)
@@ -14,3 +14,6 @@
    - 按ctrl+，进入设置页面
    - 进行如下配置
    - ![20220709073703](https://zlgan-blog.oss-cn-shenzhen.aliyuncs.com/20220709073703.png)
+   
+# 快捷键
+Ctrl+Alt+u 将剪贴板中的图片快速插入
