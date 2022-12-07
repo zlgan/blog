@@ -1,11 +1,31 @@
 English
 streamline
 Mutations
+hesitate
+upcoming 
+concern 
+Sorry got urgent matter to handle, rescheduling this call to Friday afternoon instead
+Please refer the architecture diagram as below.
+Please feel free to expand this invitation to relevant parties, like cloud PaaS team and solace team.
+I don't think half an hour is enough, but let's get in touch and decide what to do next.
+Would you mind helping arrange a follow up to continue the conversation
+I want to make sure the server team's questions are fully answered/clarified before they start setting up the server environment on December 1, 2022
+Please find the action items below, I think it would make sense to schedule another checkpoint call next week.
+While we wait for Andy's response, could you please also elaborate on the concerns you raised on the call yesterday so that Andy is aware of it and incorporates it into the solution design?
+Can I assume the following information is for future testing of ultra-low level arrangements?
 
+================================================================
 git log --after="2014-02-12T16:36:00-07:00" --author=leozlgan
-
+========================================================================
 todo
 k8s
 app dynamic
 MQ
 cometChat
+
+=======================================================================
+填写工时：
+https://timesheet.gientech.com/#/Account/MyIndex.aspx
+员工自助
+https://hub.gientech.com/?q=page-staffself
+
