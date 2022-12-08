@@ -39,3 +39,6 @@ https://timesheet.gientech.com/#/Account/MyIndex.aspx
 员工自助
 https://hub.gientech.com/?q=page-staffself
 
+
+https://www.cometchat.com/docs/react-native-chat-sdk/key-concepts
+
