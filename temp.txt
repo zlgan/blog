@@ -14,6 +14,16 @@ Please find the action items below, I think it would make sense to schedule anot
 While we wait for Andy's response, could you please also elaborate on the concerns you raised on the call yesterday so that Andy is aware of it and incorporates it into the solution design?
 Can I assume the following information is for future testing of ultra-low level arrangements?
 
+
+Acceptance Criteria
+what's the point
+
+with barely a prompt, Barbara talked on
+Admin user could input tagline and message in both Chi and Eng for each template
+as-is
+there is a hints message to encourage user to create post
+User did not save and accidently kill app 
+
 ================================================================
 git log --after="2014-02-12T16:36:00-07:00" --author=leozlgan
 ========================================================================
