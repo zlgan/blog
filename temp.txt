@@ -43,5 +43,7 @@ https://hub.gientech.com/?q=page-staffself
 https://www.cometchat.com/docs/react-native-chat-sdk/key-concepts
 
 
+apikey:
 527bbf72afa3d8176d40dd7d72d7d9419a0df2bd
-
+authkey:
+235d06e68480b43a5c7983a2558b0c2ab0611f1e
