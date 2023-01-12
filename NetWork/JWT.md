@@ -14,7 +14,7 @@ JWT=Base64(header).Base64(payload).Hash(Base64(header)+Base64(payload))
 
 1. 定义两个接口，一个需要授权，另一个不需要
 
-``` c#
+```c#
 using System;
 using System.Collections.Generic;
 using System.Linq;
