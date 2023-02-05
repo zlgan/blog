@@ -8,6 +8,17 @@ categories: Powershell
 ### 1、命令管理
 
 ```powershell
+#输入多行命令,只需要在命令后面加上重音符号 `
+PS C:\Users\Administrator> ping `
+>> -n 3 `
+>> www.baidu.com
+Pinging www.a.shifen.com [183.232.231.174] with 32 bytes of data:
+Reply from 183.232.231.174: bytes=32 time=11ms TTL=57
+Reply from 183.232.231.174: bytes=32 time=12ms TTL=57
+Reply from 183.232.231.174: bytes=32 time=11ms TTL=57
+```
+
+```powershell
 get-command #查看所有命令
 rename-item #重命名
 invoke-item # 

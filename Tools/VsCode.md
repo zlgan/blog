@@ -5,10 +5,11 @@ ctrl+p 按文件名搜索当前工作区，在窗口输入>可以调用相关的
 ctrl+K,ctrl+s 查看快捷键
 ctrl+shift+f 在工作區文件中查找
 ctrl+，打开设置
-
 ctrl+alt+arrowUp/arrowDown 將文件移動到另一個文件組
 ctrl+pageUp/pageDown  Focus on pre/next file between different file group.
+
 ---
+
 ### 文本编辑
 ctrl+shift+F 在工作区搜索文件内容
 ctrl+tab 在打开的编辑页签之间切换
