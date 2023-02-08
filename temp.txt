@@ -47,3 +47,20 @@ apikey:
 527bbf72afa3d8176d40dd7d72d7d9419a0df2bd
 authkey:
 235d06e68480b43a5c7983a2558b0c2ab0611f1e
+
+
+
+--------db full-----------
+USE AdventureWorks2022;
+GO
+-- Truncate the log by changing the database recovery model to SIMPLE.
+ALTER DATABASE AdventureWorks2022
+SET RECOVERY SIMPLE;
+GO
+-- Shrink the truncated log file to 1 MB.
+DBCC SHRINKFILE (AdventureWorks2022_Log, 1);
+GO
+-- Reset the database recovery model.
+ALTER DATABASE AdventureWorks2022
+SET RECOVERY FULL;
+GO
