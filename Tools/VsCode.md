@@ -1,11 +1,12 @@
 ## 快捷键
 
 ### 编辑器控制
-ctrl+p 按文件名搜索当前工作区，在窗口输入>可以调用相关的命令=c
-ctrl+K,ctrl+s 查看快捷键
-ctrl+shift+f 在工作區文件中查找
-ctrl+，打开设置
-ctrl+alt+arrowUp/arrowDown 將文件移動到另一個文件組
+ctrl+p 按文件名搜索当前工作区  
+ctrl+shift+p命令快捷窗口（同F1）  
+ctrl+K,ctrl+s 查看快捷键  
+ctrl+shift+f 在工作區文件中查找  
+ctrl+，打开设置  
+ctrl+alt+arrowUp/arrowDown 將文件移動到另一個文件組  
 ctrl+pageUp/pageDown  Focus on pre/next file between different file group.
 
 ---
