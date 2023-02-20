@@ -12,28 +12,28 @@ ctrl+pageUp/pageDown  Focus on pre/next file between different file group.
 ---
 
 ### 文本编辑
-ctrl+shift+F 在工作区搜索文件内容
-ctrl+tab 在打开的编辑页签之间切换
-ctrl+(-+0)缩小，放大，复原
-ctrl+/ 注释、取消注释
-Shift+alt+a 块注释
-ctrl+j 隐藏终端
-ctrl+w 关闭当前编辑页
-alt+shift 同时选中多列
-ctrl+shift+[ 折疊大綱視圖
-ctrl+shift+] 展開大綱視圖
-ctrl+[ 减少缩进
-ctrl+] 增加缩进
-ctrl+d 依次选中多个目标单词
-F2 重命名符号
-ctrl+i 打开智能提示
+ctrl+shift+F 在工作区搜索文件内容  
+ctrl+tab 在打开的编辑页签之间切换  
+ctrl+(-+0)缩小，放大，复原  
+ctrl+/ 注释、取消注释  
+Shift+alt+a 块注释  
+ctrl+j 隐藏终端  
+ctrl+w 关闭当前编辑页  
+alt+shift 同时选中多列  
+ctrl+shift+[ 折疊大綱視圖  
+ctrl+shift+] 展開大綱視圖  
+ctrl+[ 减少缩进  
+ctrl+] 增加缩进  
+ctrl+d 依次选中多个目标单词  
+F2 重命名符号  
+ctrl+i 打开智能提示  
 ---
 
-ctrl+shift+enter 上方插入行
-ctrl+enter 下方插入行
-alt+ (up,down)上下移動行
-ctrl+shift+k 删除当前行
-alt+shit+上下箭头 快速复制一行
+ctrl+shift+enter 上方插入行  
+ctrl+enter 下方插入行  
+alt+ (up,down)上下移動行  
+ctrl+shift+k 删除当前行  
+alt+shit+上下箭头 快速复制一行  
 
 ---
 ### 導航
@@ -46,6 +46,18 @@ ctrl+f  按文件名搜索（激活资源管理）
 ctrl+p 按文件名搜索
 ctrl+shift+f 按文件内容搜索
 ctrl+shift+p = f1 搜索命令
+
+
+### 单光标操作
+ctrl+ Left 光标向左移动一个单词的位置  
+ctrl+ right 光标右左移动一个单词的位置  
+home 回到行首   
+end 回到行尾   
+ctrl+home 回到文首  
+ctrl+home 回到文末  
+ctrl+shift+L 选中所有第一次选中的行
+ctrl+单击 插入多个光标
+ctrl+shift+\ 按代码块匹配的符号移动（匹配花括号）
 
 ### 多光标操作
 ctrl+L 选中当前行
