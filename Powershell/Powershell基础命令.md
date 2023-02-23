@@ -25,6 +25,14 @@ categories: Powershell
 
 - get-alias -def get-command# 根据完整名查别名
 
+PS C:\Users\leozlgan> Get-Alias -Definition Get-Content
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Alias           cat -> Get-Content
+Alias           gc -> Get-Content
+Alias           type -> Get-Content
+
 -  get-psprovider  #查看PS的提供程序
 
 - get-verb# 查询ps支持的所有谓词
