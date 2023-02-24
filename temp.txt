@@ -64,3 +64,16 @@ GO
 ALTER DATABASE AdventureWorks2022
 SET RECOVERY FULL;
 GO
+
+
+--EDA
+https://aws.amazon.com/cn/what-is/eda/
+https://solace.com/what-is-event-driven-architecture/
+https://www.redhat.com/en/topics/integration/what-is-an-event-mesh
+
+--设置变量风格
+https://dotnetthoughts.net/customize-create-and-initialize-field/
+
+
+Sync call Async
+https://www.cnblogs.com/yuanshuo/p/13807557.html
