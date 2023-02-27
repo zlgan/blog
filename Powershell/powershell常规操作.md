@@ -78,6 +78,8 @@ get-content *.md | set-content new.md
 
 #查找包含与不包含的文本
 Select-String -Path .\test -Pattern 'err' | Select-String -NotMatch -Pattern 'aaa'
+#往文件中追加新的行
+Add-Content C:\temp\test.txt "Test"
 ```
 ### 3、计算机管理
 ```powershell
