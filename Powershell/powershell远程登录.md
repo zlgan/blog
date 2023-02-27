@@ -22,7 +22,7 @@ categories: Powershell
 2. 将客户端加入信任列表
 
    ```powershell
-     winrm set winrm/config/client '@{trustedhosts="192.168.1.100"}'
+     winrm set winrm/config/client '@{TrustedHosts="192.168.1.100"}'
    ```
 
 3. 重启服务并测试
