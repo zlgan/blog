@@ -1,0 +1,1 @@
+Get-EventLog -LogName gamificationservice -Newest 20  -After '2023-02-27 15:37' -EntryType Error -Message *base*   | Format-List -Property Message
