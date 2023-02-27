@@ -14,7 +14,7 @@ categories: Powershell
 1. 开启远程管理
 
    ```powershell
-   Enable-PSRemote -Force
+   Enable-PSRemoting -Force
    ```
 
    该服务开启了WinRM服务，监听5985（http）5986（https）端口，并且设置好了防火墙规则
