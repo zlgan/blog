@@ -6,6 +6,7 @@ categories: Windows
 ---
 
 ### net use 命令解释
+>NET USE用户管理计算机上面的用户
 
 NET USER 命令是用来管理计算机用户
 

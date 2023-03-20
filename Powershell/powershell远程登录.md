@@ -24,6 +24,25 @@ categories: Powershell
    ```powershell
      winrm set winrm/config/client '@{TrustedHosts="192.168.1.100"}'
    ```
+ ```powershell
+     winrm get winrm/config/client 
+
+    Client
+        NetworkDelayms = 5000
+        URLPrefix = wsman
+        AllowUnencrypted = false
+        Auth
+            Basic = true
+            Digest = true
+            Kerberos = true
+            Negotiate = true
+            Certificate = true
+            CredSSP = false
+        DefaultPorts
+            HTTP = 5985
+            HTTPS = 5986
+        TrustedHosts = deviv3,dev2svc,dev2db,dev5,dev6,dev7
+   ```
 
 3. 重启服务并测试
 
