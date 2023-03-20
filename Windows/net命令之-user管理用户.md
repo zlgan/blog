@@ -7,20 +7,22 @@ categories: Windows
 
 ### net use 命令解释
 
-NET USE 将计算机连接到共享资源或将计算机与共享资源断开连接。使用时如果没有选项，它会列出计算机的连接：
+NET USER 命令是用来管理计算机用户
 
 ```powershell
---查看系统用户
+#查看系统用户
 net user 
---删除用户
+#查看指定用户的详细信息
+net user <username>
+#删除用户
 net user dblogin1 /delete  
---添加用户
+#添加用户
 net user dblogin1 dblogin1 /add 
---修改密码
+#修改密码
 net user dblogin1 dblogin1  
---查看计算机是的用户组
+#查看计算机的用户组
 net localgroup
---将用户加入组
+#将用户加入组
 net localgroup administrators dblogin1
 ```
 
