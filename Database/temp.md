@@ -5,7 +5,6 @@ rowlock 强制使用行级锁
 holdlock 加共享锁，直到事物结束才释放
 xlock意思是直接对表加排他锁
 
-updlock与共享锁兼容
 
 
 对于堆表无法使用行级锁
@@ -43,3 +42,24 @@ ALTER DATABASE DemoDB SET ALLOW_SNAPSHOT_ISOLATION ON
 ALTER DATABASE DemoDB SET READ_COMMITTED_SNAPSHOT ON
 ALTER DATABASE DemoDB SET MULTI_USER
 
+
+
+
+
+
+
+
+
+
+
+# 如何打开sqlserver 配置管理
+
+```powershell
+#1.查找控制台程序
+PS C:\Users\Administrator> Get-Command SQLServerManager*
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Application     SQLServerManager14.msc                             0.0.0.0    C:\WINDOWS\system32\SQLServerManager14...
+#2.运行
+PS C:\Users\Administrator> SQLServerManager14.msc
+```
