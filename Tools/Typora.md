@@ -15,6 +15,8 @@ categories: Tools
 - Ctrl+HOME 跳轉到開頭
 - Ctrl+END 跳轉到末尾
 - \ 转义，原样输出，禁止Typora解析
+- ctrl+shift+f 全局搜索
+- ctrl+L 选中当前行
 
 ### 2.编辑
 
