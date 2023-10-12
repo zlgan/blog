@@ -83,3 +83,27 @@ hehe
 1111
 
 https://docs.github.com/zh
+
+
+要查询当前数据库中未提交的事务，你可以使用以下SQL查询：
+
+```sql
+SELECT
+    r.session_id,
+    r.transaction_id,
+    r.database_id,
+    t.name AS 'Transaction Name',
+    r.status,
+    r.command,
+    r.wait_type,
+    r.wait_time,
+    r.percent_complete,
+    r.estimated_completion_time,
+    r.cpu_time,
+    r.total_elapsed_time
+FROM sys.dm_exec_requests r
+INNER JOIN sys.dm_tran_session_transactions t
+ON r.session_id = t.session_id;
+```
+
+这个查询会返回当前数据库中正在执行的事务的相关信息，包括事务ID、数据库ID、事务状态等等。你可以根据需要进一步筛选未提交的事务。
