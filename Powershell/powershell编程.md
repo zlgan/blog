@@ -3,11 +3,14 @@
  #array
 $arr1 = @(1,2,3,4)
 $arr2 = 'a','b','c'
- ```
+
+#hashtable
+$person=@{"name"="John";age=22}
+
+```
  ### 运算符
 ```powershell
 #1. 逻辑运算符
-
    ! 不等于
    not  非
    and  且
