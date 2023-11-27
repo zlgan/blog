@@ -113,8 +113,8 @@ ON r.session_id = t.session_id;
 - alipay,wechat pay api intergress
 - app+ wechat tiny app
 - https://flutter.cn/docs
--         
-
+- http://chuquan.me/2018/08/26/graphics-rending-principle-gpu/
+- 
 # recent topic
 - xunit test host
 - azure notification hub
