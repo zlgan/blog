@@ -107,3 +107,28 @@ ON r.session_id = t.session_id;
 ```
 
 这个查询会返回当前数据库中正在执行的事务的相关信息，包括事务ID、数据库ID、事务状态等等。你可以根据需要进一步筛选未提交的事务。
+
+# develop app
+- https://32a3058a.isolation.zscaler.com/profile/9160b3a5-1571-41d2-a091-3762f83cdc25/zia-session/?controls_id=d90c6343-5842-4bb5-a982-43a9ae951f9f&region=sin&tenant=29ce959a9fd0&user=a2119ee0529d2dc4e2c92f29946a5d04f381ba599e9de9ea28d1df7d7e22c2ea&original_url=https%3A%2F%2Fkotlin.liying-cn.net%2Fdocs%2Freference_zh%2Fcross-platform-frameworks.html&key=sh-1&hmac=ff7c821687a31f68eedf608e4f89847b5b09a3c08c23dc3169365e4bc62e9168
+- alipay,wechat pay api intergress
+- app+ wechat tiny app
+- https://flutter.cn/docs
+-         
+
+# recent topic
+- xunit test host
+- azure notification hub
+- OAuth 2.0
+- review dotnet core 6-8 new features
+# google fcm migration
+- https://firebase.google.com/docs/cloud-messaging/migrate-v1?hl=zh-cn
+- https://learn.microsoft.com/zh-cn/azure/notification-hubs/notification-hubs-gcm-to-fcm#migration-steps
+
+# tiny tools
+- drawio
+    - draw flow chat : https://app.diagrams.net/?splash=0&ui=sketch
+    - https://www.drawio.com/doc/
+
+
+
+                                                                                                                                                
