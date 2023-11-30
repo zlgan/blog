@@ -128,7 +128,25 @@ ON r.session_id = t.session_id;
 - drawio
     - draw flow chat : https://app.diagrams.net/?splash=0&ui=sketch
     - https://www.drawio.com/doc/
+ 
+## shell folders 
+https://ss64.com/nt/shell.html
+```powershell
+shell:startup #是一個特殊的 Shell 文件夾路徑，它指向當前用戶的啟動文件夾
+shell:desktop：#打開用戶桌面文件夾，其中包含用戶的桌面快捷方式和文件。
+shell:documents：#打開用戶的文檔文件夾，其中包含用戶的文檔文件。
+shell:downloads：#打開用戶的下載文件夾，其中包含用戶下載的文件。
+shell:favorites：#打開用戶的收藏夾，其中包含用戶的收藏夾快捷方式。
+shell:history：#打開用戶的歷史文件夾，其中包含用戶的瀏覽歷史記錄。
+shell:recent：#打開用戶的最近文件夾，其中包含最近訪問的文件的快捷方式。
+shell:sendto：#打開用戶的發送到文件夾，其中包含用於快速發送文件的目標快捷方式。
+shell:startmenu：#打開開始菜單文件夾，其中包含開始菜單的快捷方式和文件夾。
+shell:programs：#打開用戶的程序文件夾，其中包含用戶的安裝的程序和快捷方式。
+shell:system：#打開系統文件夾，其中包含操作系統的系統文件和資源。
 
-
-
-                                                                                                                                                
+在powershell打开上述文件夹,example:
+explorer shell:startup
+```
+# 20231130
+- cmd 命令 where的用法
+- 
