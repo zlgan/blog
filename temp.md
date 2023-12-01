@@ -154,5 +154,7 @@ explorer shell:startup
 刷新视图：
 EXEC sp_refreshview 'vw_mc_user_achievement';
 
-
 - 阿里技术专家详解 DDD 系列文章整理成PDF文件
+    - 使用特性来对数据格式做基本校验
+    - DDD中如何进行业务规则的校验
+    - 什么是代码遵循了 DRY 原则和单一性原则
