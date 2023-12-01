@@ -150,3 +150,9 @@ explorer shell:startup
 # 20231130
 - cmd 命令 where的用法
 - 
+# 20231201
+刷新视图：
+EXEC sp_refreshview 'vw_mc_user_achievement';
+
+
+- 阿里技术专家详解 DDD 系列文章整理成PDF文件
