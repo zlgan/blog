@@ -158,3 +158,20 @@ EXEC sp_refreshview 'vw_mc_user_achievement';
     - 使用特性来对数据格式做基本校验
     - DDD中如何进行业务规则的校验
     - 什么是代码遵循了 DRY 原则和单一性原则
+# 20231204
+宏观架构比如SOA架构、微服务架构，应用内部的架构设计，如DDD
+什么是数据库分片：https://aws.amazon.com/cn/what-is/database-sharding/
+列出项目中所有的nuget包：dotnet list package 
+DDD中各个层次对象的：各个层次对象之间使用AutoMapper转换
+- UI：DTO
+- Domain：Entity，ValueObject
+- DB：DataObject（DO）
+Auto mapper 文档:https://docs.automapper.org/en/latest/Getting-started.html
+DDD设计心得：
+- 识别系统当中的所有Entity和VO
+- 当一个业务逻辑设计多个Enity和VO的协作和交互，需要使用Domain Servie来实现
+- Entity、VO和Domain Service封装所有的业务逻辑
+- 依赖外部系统的功能时，使用防腐层ACL,一般使用适配器来协调内外接口的不一致的情况。
+- Entity状态的初始化：
+   - 对于Entity生命周期开始的时候应该初始化，并且不会发生变化的状态应该是用构造函数初始化
+   - 对于其他情况应该是用Set函数初始化（例如status状态的更新）
