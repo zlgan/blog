@@ -181,3 +181,12 @@ DDD设计心得：
   - 一个Application 接口代表的是一个业务用例
 # 20231205
 修改远程仓库
+
+1. dotnet build runtime
+2. 返回task 不带 async?
+3. Parallel.ForEach
+4. order by guid()?
+5. 字符串常量还是枚举？
+6. ConfigurationProvider 里面是否可以使用注入option ?
+7. .GetAwaiter().GetResult();
+8. 
