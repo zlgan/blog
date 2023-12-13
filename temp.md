@@ -190,3 +190,43 @@ DDD设计心得：
 6. ConfigurationProvider 里面是否可以使用注入option ?
 7. .GetAwaiter().GetResult();
 8. 
+# 20231213
+winver命令查看当前操作系统信息
+设置windodws输入法快捷键参考： https://support.hp.com/hk-zh/document/c01349985
+vscode 重构小技巧之代码包裹：
+1. ctrl+. 打开建议菜单
+2. 选择surround with snippet（用片段包围）
+ctrl+z撤销
+ctrl+y 反撤销（重做）
+按鼠标中键，可以选择多列
+
+git删除未跟踪文件
+ 
+# 删除 untracked files
+git clean -f 
+连 untracked 的目录也一起删掉
+git clean -fd
+连 gitignore 的untrack 文件/目录也一起删掉 （慎用，一般这个是用来删掉编译出来的 .o之类的文件用的）
+git clean -xfd 
+在用上述 git clean 前，墙裂建议加上 -n 参数来先看看会删掉哪些文件，防止重要文件被误删
+git clean -nxfd
+git clean -nf
+git clean -nfd
+
+重构：
+https://code.visualstudio.com/docs/csharp/refactoring
+1. F2  重命名
+2. ctrl+.
+   1. 将一段代码提取到方法
+   2. 将一段代码包裹在语句中
+   3. 将字符串提取到常量
+   4. 调用异步方法自动加await
+   5. 选中属性生成构造函数
+   6. 将属性添加到构造函数
+   7. 添加缺少的引用
+   8. 隐士类型与显示类型之间转换
+   9. convert between for and foreach
+ xunit 集成测试原理
+https://learn.microsoft.com/zh-cn/aspnet/core/test/integration-tests?view=aspnetcore-6.0      
+  
+      
