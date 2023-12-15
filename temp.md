@@ -227,6 +227,13 @@ https://code.visualstudio.com/docs/csharp/refactoring
    8. 隐士类型与显示类型之间转换
    9. convert between for and foreach
  xunit 集成测试原理
-https://learn.microsoft.com/zh-cn/aspnet/core/test/integration-tests?view=aspnetcore-6.0      
-  
-      
+https://learn.microsoft.com/zh-cn/aspnet/core/test/integration-tests?view=aspnetcore-6.0
+
+# 20231215
+
+git tag -l "GamificationService*" --sort=-creatordate
+OOD设计原则：Liskov substitution principle
+在讲DDD的解法前，我们先去看看一套游戏里最近比较火的架构设计，Entity-Component-System（ECS）是如何实现的。
+Type Object设计模式
+code  --list-extensions 列出所有已安装的扩展
+
