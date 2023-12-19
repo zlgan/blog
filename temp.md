@@ -237,3 +237,5 @@ OOD设计原则：Liskov substitution principle
 Type Object设计模式
 code  --list-extensions 列出所有已安装的扩展
 
+# 20231219
+https://cli.github.com/manual/
