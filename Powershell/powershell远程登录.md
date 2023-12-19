@@ -1,12 +1,3 @@
----
-title: powershell远程登录
-date: 2021-03-07 13:37:14
-tags: 
-categories: Powershell
----
-
-### 前提
-
 所有命令在管理员账户下运行
 
 ### 远程计算机（192.168.86.201）
@@ -42,7 +33,7 @@ categories: Powershell
             HTTP = 5985
             HTTPS = 5986
         TrustedHosts = deviv3,dev2svc,dev2db,dev5,dev6,dev7
-   ```
+ ```
 
 3. 重启服务并测试
 
