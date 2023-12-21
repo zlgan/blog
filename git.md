@@ -24,3 +24,11 @@ git clean -fd #清理未跟踪的目录和文件
      git log -G "Update.*Time" #按修改内容的关键字搜索,支持正则
  ```
 
+## tag
+```bash
+#查看最近的三次tag
+git tag --sort=-taggerdate --list 'GamificationSer*' -i | head -n 3 #按打tag时间排序
+git tag --sort=-creatordate --list 'GamificationSer*' -i | head -n 3 #按commit时间排序
+```
+
+

@@ -8,12 +8,6 @@ gh repo delete zlgan/extensions --yes
 
  gh repo list --fork #查看fork 的仓库
 
-
-
-
-
-
-
 github主页
 
 https://github.com/home
@@ -65,3 +59,5 @@ https://fluffy-meme-w9x7xr4qgpx39wg9.github.dev/
 1.  在仓库主页按 。号，仓库在网页版的vscode中打开
 2. 按go to file之后，按t可以搜索文件
 3. 在文件查看页面按l键 转到行
+
+https://github.dev/zlgan/blog
