@@ -32,3 +32,113 @@ git tag --sort=-creatordate --list 'GamificationSer*' -i | head -n 3 #按commit�
 ```
 
 
+## git commit
+
+```bash
+git commit --amend -m 'comment' #追加提交
+#如果前一个版本已经使用push 提交到远程版本库中 使用
+#应该使用 --force 强制推送追加之后的内容
+git push --force
+
+```
+
+## git show 
+```bash
+git show #查看最后git库中的最后一次提交的信息
+
+```
+
+## git branch 
+### 查看分支信息
+```bash
+git branch -a # -a 显示所有分支
+git branch -r # -r 显示远程分支
+git branch -v # -v 查看当前分支最后提交的SHA1值
+
+#查看跟踪的远程分支，以及当前分支的shar1
+git branch -vv
+dev         8a11c0b [origin/dev: behind 1] update file1 #当前分支落后远程分支一个提交
+master      bc05d83 [origin/master] Merge branch 'master' of gitee.com:zlgan/gittest
+
+#设置跟踪的远程分支
+git branch --set-upstream-to=origin/branch-name
+
+```
+### 创建分支
+```bash
+git branch br4 #创建本地分支
+git branch --set-upstream-to=origin/br4 br4 #将本地分支与远程分支建立关联
+
+#创建并切换到br4分支，并且设置当前分支跟踪的远程分支为 orgin/br4
+git checkout -b br4 --track origin/br4
+git push origin br4:br4 #将本地分支推送到远程<本地分支名>:<远程分支名>
+```
+
+### 删除分支
+```bash
+  git branch -d <local-branch-name> #删除本地分支
+  git push origin --delete <remote-branch-name> #删除远程分支
+```
+
+### 分支同步
+```bash
+git fetch #同步
+git fetch --prune #同步，并删除远程不存在的本地跟踪分支
+git pull # fetch并merge到当前分支 
+```
+### aaa
+```bash
+
+```
+### aaa
+```bash
+
+```
+### aaa
+```bash
+
+```
+### aaa
+```bash
+
+```
+### aaa
+```bash
+
+```
+
+## git 仓库操作
+```bash
+#本地仓库与远程仓库建立关联
+git remote add origin <remote-repository-url>
+#查看远程仓库的详细信息
+git remote show origin
+```
+
+## 撤销修改
+### 清理工作区文件
+```bash
+git clean #清理工作区重未跟踪的文件和目录
+git clean -n #选项提供"dry run"功能，查看需要清理的内容实际并不清理
+git clean -f #强制清理所有的目录和文件
+git clean -d #同时清理文件夹
+```
+
+### 撤销工作区的修改
+```bash
+git restore <path> #丢弃工作区的修改
+git restore --staged <path> #丢弃暂存区的修改，相当与撤销了git ad操作
+git restore  --source=origin/master  README.md #将文件恢复到远程分支的状态
+
+```
+
+### aaa
+```bash
+```
+
+### aaa
+```bash
+```
+
+## rename
+1. 修改文件名，如果只修改文件名的大小写，git无法识别，此时应该使用 `git mv` 命令修改
