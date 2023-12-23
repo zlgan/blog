@@ -12,17 +12,17 @@ git clean -fd #清理未跟踪的目录和文件
 
 ## git log
 ```bash
-     git log  # 查看log日志 
-     git log --pretty=oneline #显示完整的hash
-     git log --oneline #显示hash的前七位
-     git log --author=zlgan #过滤作者
-     git log -3 #查询最近三次提交
-     git log  --grep=keywords #过滤comment包含特定关键字的提交记录 
-     git log  --before='2020-1-1' --after='2020-2-2' #过滤时间范围
-     git log  -- dir #查询对指定目录的修改记录
-     git log -S "UpdateDateTime" #按修改内容的关键字搜索
-     git log -G "Update.*Time" #按修改内容的关键字搜索,支持正则
- ```
+git log  # 查看log日志 
+git log --pretty=oneline #显示完整的hash
+git log --oneline #显示hash的前七位
+git log --author=zlgan #过滤作者
+git log -3 #查询最近三次提交
+git log  --grep=keywords #过滤comment包含特定关键字的提交记录 
+git log  --before='2020-1-1' --after='2020-2-2' #过滤时间范围
+git log  -- <file-path> #查询对指定目录的修改记录
+git log -S "UpdateDateTime" #按修改内容的关键字搜索
+git log -G "Update.*Time" #按修改内容的关键字搜索,支持正则
+```
 
 ## tag
 ```bash
@@ -36,24 +36,22 @@ git tag --sort=-creatordate --list 'GamificationSer*' -i | head -n 3 #按commit�
 
 ```bash
 git commit --amend -m 'comment' #追加提交
-#如果前一个版本已经使用push 提交到远程版本库中 使用
+#如果前一个版本已经使用push 提交到远程版本库中
 #应该使用 --force 强制推送追加之后的内容
 git push --force
-
 ```
 
 ## git show 
 ```bash
 git show #查看最后git库中的最后一次提交的信息
-
 ```
 
 ## git branch 
 ### 查看分支信息
 ```bash
-git branch -a # -a 显示所有分支
-git branch -r # -r 显示远程分支
-git branch -v # -v 查看当前分支最后提交的SHA1值
+git branch -a #-a显示所有分支
+git branch -r #-r显示远程分支
+git branch -v #-v查看当前分支最后提交的SHA1值
 
 #查看跟踪的远程分支，以及当前分支的shar1
 git branch -vv
@@ -62,7 +60,6 @@ master      bc05d83 [origin/master] Merge branch 'master' of gitee.com:zlgan/git
 
 #设置跟踪的远程分支
 git branch --set-upstream-to=origin/branch-name
-
 ```
 ### 创建分支
 ```bash
@@ -76,8 +73,8 @@ git push origin br4:br4 #将本地分支推送到远程<本地分支名>:<远程
 
 ### 删除分支
 ```bash
-  git branch -d <local-branch-name> #删除本地分支
-  git push origin --delete <remote-branch-name> #删除远程分支
+git branch -d <local-branch-name> #删除本地分支
+git push origin --delete <remote-branch-name> #删除远程分支
 ```
 
 ### 分支同步
@@ -129,7 +126,7 @@ git clean -d #同时清理文件夹
 git restore <path> #丢弃工作区的修改
 git restore --staged <path> #丢弃暂存区的修改，相当与撤销了git ad操作
 git restore  --source=origin/master  README.md #将文件恢复到远程分支的状态
-
+git reset --hard head 将当前工作区和暂存区都丢弃，恢复到最后一次提交时的状态
 ```
 
 ### aaa

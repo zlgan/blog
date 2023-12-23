@@ -128,7 +128,7 @@ ON r.session_id = t.session_id;
 - drawio
     - draw flow chat : https://app.diagrams.net/?splash=0&ui=sketch
     - https://www.drawio.com/doc/
- 
+
 ## shell folders 
 https://ss64.com/nt/shell.html
 ```powershell
@@ -201,7 +201,7 @@ ctrl+y 反撤销（重做）
 按鼠标中键，可以选择多列
 
 git删除未跟踪文件
- 
+
 # 删除 untracked files
 git clean -f 
 连 untracked 的目录也一起删掉
@@ -226,8 +226,8 @@ https://code.visualstudio.com/docs/csharp/refactoring
    7. 添加缺少的引用
    8. 隐士类型与显示类型之间转换
    9. convert between for and foreach
- xunit 集成测试原理
-https://learn.microsoft.com/zh-cn/aspnet/core/test/integration-tests?view=aspnetcore-6.0
+    xunit 集成测试原理
+    https://learn.microsoft.com/zh-cn/aspnet/core/test/integration-tests?view=aspnetcore-6.0
 
 # 20231215
 
