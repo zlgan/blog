@@ -241,3 +241,4 @@ code  --list-extensions 列出所有已安装的扩展
 https://cli.github.com/manual/
 test
 test2
+test3
