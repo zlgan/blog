@@ -240,9 +240,51 @@ code  --list-extensions 列出所有已安装的扩展
 
 # 20231219
 https://cli.github.com/manual/
-test
-test2
-test3
-test4
 
-test5
+# 20231225
+
+1. drawio 快捷键 https://app.diagrams.net/shortcuts.svg
+
+# 20231226
+
+# CQRS的四层架构
+## presentation
+  - dependency
+    1. application
+    2. domain
+    3. infrastructure
+  - code orgnazation
+  - 职责
+    1. 用户接口层负责向用户显示信息和解释用户指令。这里的用户可能是：用户、程序、自动化测试和批处理脚本等等
+## application
+  - dependecy
+    1. domain
+    2. infrastructure
+  - code orgnaztion
+    1. commands
+    2. queries
+    3. domainEventHandlers
+  - 职责
+    1. 协调多个聚合的服务和领域对象完成服务编排和组合，协作完成业务操作
+    2. 行安全认证、权限校验、事务控制、发送或订阅领域事件
+## domain
+  - code orgnaztion
+
+    2. seedwork
+    4. AggregatesModel
+    1. events
+    5. exceptions
+    6. services
+  - 职责
+  1. 现企业核心业务逻辑表达业务概念、业务状态和业务规则
+
+## infrastructure
+  - repositories
+
+  - 职责
+  1. 为其它各层提供通用的技术和基础服务
+
+## ddd实战课程
+https://zq99299.github.io/note-book2/ddd/
+
+

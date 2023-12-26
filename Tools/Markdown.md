@@ -33,3 +33,11 @@
 - 删除线 alt+s
 ---
 ### 画图
+
+
+> ```
+> git clone https://github.com/user/repo.git
+> cd repo
+> npm install
+> npm start
+> ```
