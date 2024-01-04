@@ -288,3 +288,6 @@ https://cli.github.com/manual/
 https://zq99299.github.io/note-book2/ddd/
 
 
+https://www.bilibili.com/video/BV1k7411A7p6/
+
+https://github.com/dotnet/extensions/releases
