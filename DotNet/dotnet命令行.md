@@ -61,3 +61,30 @@ dotnet add package Newtonsoft.Json --version 12.0.1
 dotnet remove package Newtonsoft.Json
 ```
 
+
+
+
+
+创建项目指定SDK
+
+dotnet new console --framework 'netcoreapp3.1'
+
+dotnet new console --framework 'net6.0'
+
+
+
+
+
+<Project Sdk="Microsoft.NET.Sdk.Web">  构建aspnet 应用需要引入的nuget包集合
+
+<Project Sdk="Microsoft.NET.Sdk">构建dotnet 应用需要引入的nuget包集合
+
+<TargetFramework>netcoreapp3.1</TargetFramework> 目标SDK
+
+
+
+
+
+dotnet dev-certs https --check
+A valid certificate was found: 9B6FDE7F6F882A5217586058A3735DDB6B25C008 - CN=localhost - Valid from 2024-01-06 17:08:04Z to 2025-01-05 17:08:04Z - IsHttpsDevelopmentCertificate: true - IsExportable: true
+Run the command with both --check and --trust options to ensure that the certificate is not only valid but also trusted.
