@@ -139,3 +139,32 @@ git reset --hard head 将当前工作区和暂存区都丢弃，恢复到最后�
 
 ## rename
 1. 修改文件名，如果只修改文件名的大小写，git无法识别，此时应该使用 `git mv` 命令修改
+
+# 钩子
+
+```bash
+#!/bin/bash
+
+# 获取当前提交的 SHA-1 值
+current_commit=$(git rev-parse HEAD)
+
+# 获取前一个提交的 SHA-1 值
+previous_commit=$(git rev-parse HEAD^)
+
+# 检查某个文件的特定内容是否相对于前一个版本发生了变更
+file_to_check="version.xml"
+
+specific_content='s/.*<productVersion>\([^<]\+\)<\/productVersion>.*/\1/p'
+
+# 获取前一个提交的特定内容
+preVersion=$(git show "$previous_commit":"$file_to_check" | sed -n "$specific_content")
+# 获取当前提交的特定内容
+currentVersion=$(git show "$current_commit":"$file_to_check" | sed -n "$specific_content")
+
+# 在此处添加你的逻辑来判断版本是否发生变化
+if [ "$preVersion" = "$currentVersion" ]; then
+   echo -e "\e[33mWarning:======Product version not updated yet!!!!!!======\e[0m"
+   echo -e "\e[33mCurrent version: $currentVersion\e[0m"
+fi
+```
+
