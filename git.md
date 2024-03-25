@@ -66,8 +66,10 @@ git branch --set-upstream-to=origin/branch-name
 git branch br4 #创建本地分支
 git branch --set-upstream-to=origin/br4 br4 #将本地分支与远程分支建立关联
 
-#创建并切换到br4分支，并且设置当前分支跟踪的远程分支为 orgin/br4
-git checkout -b br4 --track origin/br4
+#创建与跟踪的远程分支同名的本地分支，并切换到该分支
+git checkout --track origin/br4
+#如果本地分支与远程分支名称不相同则使用-b参数指定新的分支名称
+git checkout -b new_name --track origin/br4
 git push origin br4:br4 #将本地分支推送到远程<本地分支名>:<远程分支名>
 ```
 

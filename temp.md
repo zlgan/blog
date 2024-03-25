@@ -291,3 +291,19 @@ https://zq99299.github.io/note-book2/ddd/
 https://www.bilibili.com/video/BV1k7411A7p6/
 
 https://github.com/dotnet/extensions/releases
+
+
+# 20240108
+1. git revert 
+
+git查找两个分支的共同节点
+https://blog.csdn.net/qq_20817327/article/details/117817160
+
+# 20240129
+https://www.qwertee.io/blog/postgresql-b-tree-index-explained-part-1/
+
+
+# 20240325
+1. 解决虚拟机账号问题 
+2. 创建一个SUSE系统的虚拟机
+3.Linux 目录的参考标准：https://www.pathname.com/fhs/pub/fhs-2.3.pdf

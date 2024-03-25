@@ -324,3 +324,4 @@ categories: Linux
 
 ```
 
+参考标准：https://www.pathname.com/fhs/pub/fhs-2.3.pdf
