@@ -306,4 +306,9 @@ https://www.qwertee.io/blog/postgresql-b-tree-index-explained-part-1/
 # 20240325
 1. 解决虚拟机账号问题 
 2. 创建一个SUSE系统的虚拟机
-3.Linux 目录的参考标准：https://www.pathname.com/fhs/pub/fhs-2.3.pdf
+3. Linux 目录的参考标准：https://www.pathname.com/fhs/pub/fhs-2.3.pdf
+4. 配置ssh登录nas
+5. 利用ChatGTP重构知识体系
+6. 搭建DNS，活动目录AD，域控制器
+7. ladp协议 ：https://www.openldap.org/doc/admin26/
+8. Kerberos认证：https://seevae.github.io/2020/09/12/%E8%AF%A6%E8%A7%A3kerberos%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B/
