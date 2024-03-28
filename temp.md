@@ -312,3 +312,9 @@ https://www.qwertee.io/blog/postgresql-b-tree-index-explained-part-1/
 6. 搭建DNS，活动目录AD，域控制器
 7. ladp协议 ：https://www.openldap.org/doc/admin26/
 8. Kerberos认证：https://seevae.github.io/2020/09/12/%E8%AF%A6%E8%A7%A3kerberos%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B/
+9. 研究LADP，Kerbers 身份认证
+10. 部署splunk 日志系统研究一下
+11. https://docs.docker.com/
+12. vmrun 从命令行控制虚拟机.
+https://docs.vmware.com/cn/VMware-Fusion/13/com.vmware.fusion.using.doc/GUID-FF306A59-080E-497E-857D-F45125927FB3.html
+13. 研究鸿蒙os与安卓的差异
