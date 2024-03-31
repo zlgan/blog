@@ -228,7 +228,7 @@ https://code.visualstudio.com/docs/csharp/refactoring
    8. 隐士类型与显示类型之间转换
    9. convert between for and foreach
     xunit 集成测试原理
-     https://learn.microsoft.com/zh-cn/aspnet/core/test/integration-tests?view=aspnetcore-6.0
+       https://learn.microsoft.com/zh-cn/aspnet/core/test/integration-tests?view=aspnetcore-6.0
 
 # 20231215
 
@@ -316,5 +316,13 @@ https://www.qwertee.io/blog/postgresql-b-tree-index-explained-part-1/
 10. 部署splunk 日志系统研究一下
 11. https://docs.docker.com/
 12. vmrun 从命令行控制虚拟机.
-https://docs.vmware.com/cn/VMware-Fusion/13/com.vmware.fusion.using.doc/GUID-FF306A59-080E-497E-857D-F45125927FB3.html
+    https://docs.vmware.com/cn/VMware-Fusion/13/com.vmware.fusion.using.doc/GUID-FF306A59-080E-497E-857D-F45125927FB3.html
 13. 研究鸿蒙os与安卓的差异
+14. 学习linux&bash
+
+
+
+# docker
+
+
+

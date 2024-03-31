@@ -103,6 +103,29 @@ graph LR
 
 
 
+# 验证签名的过程：
+
+```bash
+#创建一个明文文件
+echo "helloworld" >> message.txt
+#创建甲的私钥
+openssl genrsa -out jiaprikey.pem
+#从甲的私钥中创建甲的公钥
+openssl rsa -in jiaprikey.pem -pubout -out jiapubkey.pem
+#创建乙的私钥
+openssl genrsa -out yiprikey.pem
+#创建乙的公钥
+openssl rsa -in yiprikey.pem -pubout -out yipubkey.pem
+#使用sha1算法对消息进行hash，然后使用甲的私钥对hash进行签名，生成签名文件file.sign
+openssl dgst -sign jiaprikey.pem -sha1 -out file.sign message.txt
+#使用甲的公钥验证签名
+openssl dgst -verify jiapubkey.pem -sha1 -signature file.sign message.txt
+```
+
+
+
+
+
 >参考文档
 >
 >https://www.jianshu.com/p/0e9ee7ed6c1d
