@@ -320,9 +320,9 @@ https://www.qwertee.io/blog/postgresql-b-tree-index-explained-part-1/
 13. 研究鸿蒙os与安卓的差异
 14. 学习linux&bash
 
+停止windows防火墙服务mpssvc
+https://learn.microsoft.com/en-us/answers/questions/64486/disable-windows-firewall-on-2k19?page=2#answers
 
-
-# docker
 
 
 
