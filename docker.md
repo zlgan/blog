@@ -20,3 +20,30 @@ docker run -i -t -d -p 8080:80  nginx /bin/bash
 # nginx：指定要使用的镜像名称，这里使用的是nginx镜像。
 # /bin/bash：在容器内部运行的命令，即启动一个Bash Shell
 ```
+
+
+# docker build 
+# docker images 
+# docker ps 
+# docker run
+# docker inspect
+# docker network
+# docker info 
+# docker logs <container>
+# docker compose
+# compose.yaml
+# Dockerfile
+```bash
+
+
+#查看容器
+docker ps #运行中的容器
+docker container ls  #运行中的容器
+docker container ls -a #所有容器
+#启动与停止容器
+docker stop -t 10 db57e08154fb
+docker start  db57e08154fb
+#修改容器名称
+docker rename mongodb mongodb_app
+
+```
