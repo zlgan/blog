@@ -1,5 +1,26 @@
+
+
+# 系统信息查看
+
+## 查看发行版信息
+```bash
+suse01:/ # cat /etc/os-release 
+NAME="openSUSE Leap"
+VERSION="15.5"
+ID="opensuse-leap"
+ID_LIKE="suse opensuse"
+VERSION_ID="15.5"
+PRETTY_NAME="openSUSE Leap 15.5"
+ANSI_COLOR="0;32"
+CPE_NAME="cpe:/o:opensuse:leap:15.5"
+BUG_REPORT_URL="https://bugs.opensuse.org"
+HOME_URL="https://www.opensuse.org/"
+DOCUMENTATION_URL="https://en.opensuse.org/Portal:Leap"
+LOGO="distributor-logo-Leap"
+```
 # 网络接口配置
 
+```bash
   ip addr  #显示网络接口信息
   sudo ip addr add 192.168.0.11/24 dev eth0 #在eth0网卡上添加ip
   sudo ip delete add 192.168.0.11/24 dev eth0 #在eth0网卡上删除ip
@@ -13,8 +34,9 @@
   sudo ip link set dev eth0 master br0 #将网卡eth0加入网桥br0
   sudo ip link set dev eth0 nomaster #将网卡eth0从网桥br0中移除
   sudo ip link set dev eth0 type vlan id 10 #将网卡eth0设置为VLAN模式，并设置VLAN ID为10  
-
+```
   ## 命令行查看网络配置信息
+  ```bash
   ip addr show  #显示网络接口信息
   ip route show  #显示路由表信息
   ip link show  #显示网络接口信息
@@ -22,7 +44,7 @@
   ip maddr show  #显示组播地址表信息
   ip monitor  #实时监控网络接口信息
   ip netstat  #显示网络连接信息
-
+```
 
   ## 配置ip
   /etc/sysconfig/network/ifcfg-eth0
@@ -59,16 +81,18 @@ nameserver 8.8.8.8
 
 
 # OpenSUSE Linux 查看防火墙配置
+```bash
 SuSEfirewall2 status #查看防火墙设置
 SuSEfirewall2 start #启用防火墙
 SuSEfirewall2 stop #禁用防火墙
 SuSEfirewall2 restart #重启防火墙
 SuSefirewall2 show #查看防火墙规则
 SuSEfirewall2 status #查看防火墙状态
-
+```
 修改防火墙配置规则：/etc/sysconfig/SuSEfirewall2 
 
-# 端口查看 ss（Socket Statistics）
+# 端口查看 ss（Socket Statistics）/netstat
+```bash
 ss -t #TCP连接
 ss -u #UDP链接
 ss -l #监听状态
@@ -81,7 +105,6 @@ ss src 10.0.0.1
 显示与指定进程ID相关联的连接：
 ss -p pid 1234
 
-# netstat
 netstat -a #显示所有端口
 netstat -t #tcp端口 
 netstat -u #显示所有UDP端口
@@ -89,17 +112,14 @@ netstat -l #仅显示监听端口
 netstat -pl #显示所有端口和进程ID
 netstat -r #显示路由表信息
 netstat -s #显示网络统计信息
-
 netstat -tunlp | grep 8080 #查看8080端口
 netstat -tunlp 
 netstat -anp | grep 8080 #查看8080端口  
-
+```
 
 # 用户管理：
   sudo id 显示当前登录用户
   sudo passwd 修改密码
-
-
 
 # zypper的用法：
 
