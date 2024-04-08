@@ -122,3 +122,18 @@ cat /opt/mongodb/mms/conf/mms.conf
 
 ```
 
+## 3.在http://<host>:8080注册第一个用户
+## 4.配置ops manager
+## 5.从ops manager页面下载并安装Agent
+- Monitoring Agent
+- Backup Agent ，默认处于休眠状态，知道主动启动
+- Agent需要与mongodb 进程在同一个账户下运行
+## 6.将部署导入监控
+
+
+#Q&A
+- 防火墙服务mpssvc无法停止
+`reg add hklm\system\currentcontrolset\services\mpssvc /t reg_dword /v start /d 4 /f reg add hklm\system\currentcontrolset\services\mpssvc /t reg_dword /v start /d 4 /f `
+# ref
+- 安装流程：https://www.cnblogs.com/generalli2019/p/13471246.html
+
