@@ -324,5 +324,64 @@ https://www.qwertee.io/blog/postgresql-b-tree-index-explained-part-1/
 https://learn.microsoft.com/en-us/answers/questions/64486/disable-windows-firewall-on-2k19?page=2#answers
 
 
+## zypper 的使用 
+```bash
+zypper lr #列出源仓库列表
+zypper clean #删除zypper下载的安装包缓存和安装包的元数据缓存
+zypper refresh # 刷新zypper软件包缓存和元数据缓存
+zypper update # 更新
+zypper ps #命令用于显示在 SUSE 系统上当前正在运行的进程和与之相关的软件包信息
+zypper info <package_name> #查看某个已安装软件包的详细信息
+zypper list-updates #查询已安装的软件包中有哪些可以更新
+sudo zypper install /path/to/package.rpm #安装已经下载rpm包
+```
+
+linux 系统信息查询：
+https://cloud.tencent.com/developer/article/1926086
 
 
+
+```bash
+#开放防火墙端口
+firewall-cmd --query-port=80/tcp（查看端口是否开放）
+firewall-cmd --zone=public --add-port=80/tcp --permanent（设置80端口开放出来）
+firewall-cmd --reload （重启防火墙，就可以使用了）
+```
+
+```bash
+
+docker login -u leozlgan (gzl@10010312)
+docker tag getting-started leozlgan/mytest:latest 
+docker push leozlgan/mytest:latest
+
+```
+```bash
+
+docker volume create to-do
+docker volume ls 
+docker volume inspect <volume-name> #view volume details
+
+docker inspect <container_name> #view container details
+```
+
+
+```bash
+
+docker network create todo-app
+docker network inspect todo-app
+
+docker run -d \
+    --network todo-app --network-alias mysql \
+    -v todo-mysql-data:/var/lib/mysql \
+    -e MYSQL_ROOT_PASSWORD=secret \
+    -e MYSQL_DATABASE=todos \
+    mysql:8.0
+
+docker exec -it <mysql-container-id> mysql -u root -p    
+mysql> SHOW DATABASES;
+mysql> exit
+
+```
+
+1. 安装Docker Desktop并尝试使用k8s
+2. linux磁盘挂载研究？
