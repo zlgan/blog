@@ -1,70 +1,5 @@
-English
-streamline
-Mutations
-hesitate
-upcoming 
-concern 
-Sorry got urgent matter to handle, rescheduling this call to Friday afternoon instead
-Please refer the architecture diagram as below.
-Please feel free to expand this invitation to relevant parties, like cloud PaaS team and solace team.
-I don't think half an hour is enough, but let's get in touch and decide what to do next.
-Would you mind helping arrange a follow up to continue the conversation
-I want to make sure the server team's questions are fully answered/clarified before they start setting up the server environment on December 1, 2022
-Please find the action items below, I think it would make sense to schedule another checkpoint call next week.
-While we wait for Andy's response, could you please also elaborate on the concerns you raised on the call yesterday so that Andy is aware of it and incorporates it into the solution design?
-Can I assume the following information is for future testing of ultra-low level arrangements?
 
 
-Acceptance Criteria
-what's the point
-
-with barely a prompt, Barbara talked on
-Admin user could input tagline and message in both Chi and Eng for each template
-as-is
-there is a hints message to encourage user to create post
-User did not save and accidently kill app 
-
-================================================================
-
-git log --after="2014-02-12T16:36:00-07:00" --author=leozlgan
-===================================================
-todo
-k8s
-app dynamic
-MQ
-cometChat
-
-=======================================================================
-填写工时：
-https://timesheet.gientech.com/#/Account/MyIndex.aspx
-员工自助
-https://hub.gientech.com/?q=page-staffself
-
-
-https://www.cometchat.com/docs/react-native-chat-sdk/key-concepts
-
-
-apikey:
-527bbf72afa3d8176d40dd7d72d7d9419a0df2bd
-authkey:
-235d06e68480b43a5c7983a2558b0c2ab0611f1e
-
-
-
---------db full-----------
-USE AdventureWorks2022;
-GO
--- Truncate the log by changing the database recovery model to SIMPLE.
-ALTER DATABASE AdventureWorks2022
-SET RECOVERY SIMPLE;
-GO
--- Shrink the truncated log file to 1 MB.
-DBCC SHRINKFILE (AdventureWorks2022_Log, 1);
-GO
--- Reset the database recovery model.
-ALTER DATABASE AdventureWorks2022
-SET RECOVERY FULL;
-GO
 
 
 --EDA
@@ -74,7 +9,6 @@ https://www.redhat.com/en/topics/integration/what-is-an-event-mesh
 
 --设置变量风格
 https://dotnetthoughts.net/customize-create-and-initialize-field/
-
 
 Sync call Async
 https://www.cnblogs.com/yuanshuo/p/13807557.html
