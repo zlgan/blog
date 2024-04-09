@@ -382,3 +382,6 @@ mysql> SHOW DATABASES;
 mysql> exit
 
 ```
+
+1. 安装Docker Desktop并尝试使用k8s
+2. linux磁盘挂载研究？
