@@ -13,13 +13,13 @@ docker pull mongodb/mongodb-enterprise-server:latest
 
 ```bash
 #宿主机/ops目录下新建目录
-mkdir -p mongodb/{data,log,conf}
+mkdir -p opsmanager/{data,log,conf}
 ```
 
 1.3 设置目录权限
 
 ```bash
-chmod -R 777 mongodb
+chmod -R 777 opsmanager
 ```
 
 1.4  在宿主机/opt/mongodb/conf下新建配置文件mongod.conf
@@ -53,7 +53,7 @@ net:
 #operationProfiling:
 
 replication:
-  replSetName: rs01
+  replSetName: rsapp
 
 #sharding:
 
@@ -67,13 +67,12 @@ replication:
 
 ```bash
 #运行容器
-docker run --name mongodb_app01   -p 27001:27017 -d -v /opt/mongodb/rsApp/node1/data:/data/data -v /opt/mongodb/rsApp/node1/log/:/data/log/ -v /opt/mongodb/rsApp/node1/conf/:/data/conf/ mongodb/mongodb-enterprise-server:latest --config /data/conf/mongod.conf
+docker run --name mongodb_app -p 27001:27017 -d -v /var/opsmanager/appdb/node1/data:/data/data -v /var/opsmanager/appdb/node1/log/:/data/log/ -v /var/opsmanager/appdb/node1/conf/:/data/conf/ --ulimit nofile=64000:64000 mongodb/mongodb-enterprise-server:7.0.6-ubuntu2204 --config /data/conf/mongod.conf
 
+docker run --name mongodb_app2 -p 27002:27017 -d -v /var/opsmanager/appdb/node2/data:/data/data -v /var/opsmanager/appdb/node2/log/:/data/log/ -v /var/opsmanager/appdb/node2/conf/:/data/conf/ --ulimit nofile=64000:64000 mongodb/mongodb-enterprise-server:7.0.6-ubuntu2204 --config /data/conf/mongod.conf
 
-docker run --name mongodb_app02   -p 27002:27017 -d -v /opt/mongodb/rsApp/node2/data:/data/data -v /opt/mongodb/rsApp/node2/log/:/data/log/ -v /opt/mongodb/rsApp/node2/conf/:/data/conf/ mongodb/mongodb-enterprise-server:latest --config /data/conf/mongod.conf
+docker run --name mongodb_app3 -p 27003:27017 -d -v /var/opsmanager/appdb/node3/data:/data/data -v /var/opsmanager/appdb/node3/log/:/data/log/ -v /var/opsmanager/appdb/node3/conf/:/data/conf/ --ulimit nofile=64000:64000 mongodb/mongodb-enterprise-server:7.0.6-ubuntu2204 --config /data/conf/mongod.conf
 
-
-docker run --name mongodb_app03  -p 27003:27017 -d -v /opt/mongodb/rsApp/node3/data:/data/data -v /opt/mongodb/rsApp/node3/log/:/data/log/ -v /opt/mongodb/rsApp/node3/conf/:/data/conf/ mongodb/mongodb-enterprise-server:latest --config /data/conf/mongod.conf
 
 ```
 
@@ -83,6 +82,21 @@ docker run --name mongodb_app03  -p 27003:27017 -d -v /opt/mongodb/rsApp/node3/d
 rs.initiate({_id:"rsapp",members:[{_id:0,host:"192.168.8.21:27001"},{_id:1,host:"192.168.8.22:27002"},{_id:2,host:"192.168.8.23:27003"}]})
 ```
 
+1.7 修改副本集配置
+
+```bash
+#保存配置到变量
+cf=rs.conf()
+#查看成员1配置
+cf.members[0]
+cf.members[0].host="10.194.191.124:27001"
+rs.reconfig(cf)
+#添加成员
+rs.add("<ip>:<port>")
+#删除成员
+rs.remove("<ip>:<port>")
+
+```
 
 
 ##  2. 安装ops manager
@@ -113,7 +127,8 @@ systemctl status mongodb-mms
 #systemctl start  mongodb-mms
 
 #查看日志：
-cat /opt/mongodb/mms/logs/mms0.log
+  Invalid config: Attempting to import cluster process as standalone  
+
 
 #查看配置
 cat /opt/mongodb/mms/conf/mms.conf
