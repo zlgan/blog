@@ -78,7 +78,7 @@ docker run --name mongodb_app3 -p 27003:27017 -d -v /var/opsmanager/appdb/node3/
 
 1.6 初始化副本集
 
-```
+```bash
 rs.initiate({_id:"rsapp",members:[{_id:0,host:"192.168.8.21:27001"},{_id:1,host:"192.168.8.22:27002"},{_id:2,host:"192.168.8.23:27003"}]})
 ```
 
@@ -112,7 +112,7 @@ sudo rpm -ivh /tmp/mongodb-mms-7.0.3.500.20240305T1921Z.x86_64.rpm
 
 2.2 修改配置：
 
-```
+```bash
 /opt/mongodb/mms/conf/conf-mms.properties
 
 mongo.mongoUri=mongodb://127.0.0.1:27001,127.0.0.1:27002,127.0.0.1:27003/?replicaSet=rsapp&maxPoolSize=150&retryWrites=false&retryReads=false&uuidRepresentation=standard

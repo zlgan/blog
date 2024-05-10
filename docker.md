@@ -47,3 +47,10 @@ docker start  db57e08154fb
 docker rename mongodb mongodb_app
 
 ```
+
+
+# docker compse 
+1. 安装：https://docs.docker.com/engine/install/sles/#set-up-the-repository
+2. 阿里云加速:https://help.aliyun.com/zh/acr/user-guide/accelerate-the-pulls-of-docker-official-images
+3. https://docs.docker.com/compose/gettingstarted/
+

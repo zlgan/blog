@@ -123,5 +123,13 @@ netstat -anp | grep 8080 #查看8080端口
 
 # zypper的用法：
 
+```bash
+#查看已安装的软件包
+DEVMSSUSESVR11:~ # zypper se --installed-only  |grep gzip
+i  | gzip                                                 | GNU Zip Compression Utilities                                                                                                                         | package
+i  | pigz                                                 | Multi-core gzip version                                                                                                                               | package
+i  | SUSE-SLE-Module-Basesystem-15-SP4-2022-1617          | Security update for gzip 
+```
+
 
 # YaST的用法
