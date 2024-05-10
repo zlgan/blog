@@ -131,7 +131,7 @@ systemctl status mongodb-mms
 
 
 #查看配置
-cat /opt/mongodb/mms/conf/mms.conf
+ 
 #手工启动服务
 /opt/mongodb/mms/bin/mongodb-mms start
 

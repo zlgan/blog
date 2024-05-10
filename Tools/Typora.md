@@ -182,11 +182,24 @@ john ->>alice: hello alice
 
 
 
+# 偏好设置
+
+## 默认图片左对齐
+
+![image-20240413210824749](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240413210824749.png)
+
+![image-20240413210836179](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240413210836179.png)
 
 
 
 
 
+![image-20240413210847853](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240413210847853.png)
 
-
+```css
+p .md-image:only-child{
+    width: auto;
+    text-align: left;
+}
+```
 

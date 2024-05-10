@@ -319,3 +319,108 @@ mysql> exit
 
 1. 安装Docker Desktop并尝试使用k8s
 2. linux磁盘挂载研究？
+
+
+
+
+
+
+
+
+
+# ldap
+
+## openLDAP
+
+
+
+
+
+# dns服务器
+
+## dnsmasq
+
+
+
+
+
+# nginx 配置负载均衡
+
+## OAuth 2.0
+
+## OpenID Connect (OIDC)
+
+
+
+IdentityServer4 
+
+
+
+```
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
