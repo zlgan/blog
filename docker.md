@@ -141,6 +141,14 @@ docker network create -d bridge <bridge-name>
 docker network ls
 docker network inspect <bridge-name>
 
+```
+
+
+# docker compse 
+1. 安装：https://docs.docker.com/engine/install/sles/#set-up-the-repository
+2. 阿里云加速:https://help.aliyun.com/zh/acr/user-guide/accelerate-the-pulls-of-docker-official-images
+3. https://docs.docker.com/compose/gettingstarted/
+
 #删除网络
 docker network rm <bridge-name>
 ```
