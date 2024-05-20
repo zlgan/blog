@@ -89,12 +89,9 @@ index=your_index | spath input=_raw path=event.user.name output=userName | spath
 
 ## where 
 ```bash
-
 |savedsearch gamification
 | top StatusCode
 | top limit=1 StatusCode
-
-
 
 ```
 
