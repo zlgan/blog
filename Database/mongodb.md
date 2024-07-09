@@ -49,7 +49,11 @@ switched to db mydatabase
 > db.dropDatabase()
 { "ok" : 1 }
 
-#
+#停止mongodb
+ use admin
+ db.shutdownServer()
+ 
+
 ```
 
 
@@ -283,6 +287,9 @@ DBCollection help
         db.collections.latencyStats() - display operation latency histograms for this collection
 ```
 
+
+
+https://www.thecodebuzz.com/mongodb-repository-implementation-unit-testing-net-core-example/
 
 
 
