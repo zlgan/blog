@@ -364,17 +364,10 @@ IdentityServer4
 
 
 
-
-
-
-
-
-
-
-
-
-
 https://blog.csdn.net/qq_41813208/article/details/122310785
+
+
+https://seevae.github.io/2020/09/12/%E8%AF%A6%E8%A7%A3kerberos%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B/
 
 
 
