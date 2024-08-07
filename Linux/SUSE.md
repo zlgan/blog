@@ -44,7 +44,7 @@ LOGO="distributor-logo-Leap"
   ip maddr show  #显示组播地址表信息
   ip monitor  #实时监控网络接口信息
   ip netstat  #显示网络连接信息
-```
+  ```
 
   ## 配置ip
   /etc/sysconfig/network/ifcfg-eth0
@@ -121,15 +121,80 @@ netstat -anp | grep 8080 #查看8080端口
   sudo id 显示当前登录用户
   sudo passwd 修改密码
 
-# zypper的用法：
+# 软件包管理：
+
+## zypper命令详解
 
 ```bash
+zypper lr #列出源仓库列表
+zypper clean #删除zypper下载的安装包缓存和安装包的元数据缓存
+zypper refresh # 刷新zypper软件包缓存和元数据缓存
+zypper update # 更新
+zypper ps #命令用于显示在 SUSE 系统上当前正在运行的进程和与之相关的软件包信息
+zypper info <package_name> #查看某个已安装软件包的详细信息
+zypper list-updates #查询已安装的软件包中有哪些可以更新
+sudo zypper install /path/to/package.rpm #安装已经下载rpm包
 #查看已安装的软件包
-DEVMSSUSESVR11:~ # zypper se --installed-only  |grep gzip
-i  | gzip                                                 | GNU Zip Compression Utilities                                                                                                                         | package
-i  | pigz                                                 | Multi-core gzip version                                                                                                                               | package
-i  | SUSE-SLE-Module-Basesystem-15-SP4-2022-1617          | Security update for gzip 
+DEVMSSUSESVR11:~ #zypper se --installed-only mongo
+Reading installed packages...
+
+S  | Name        | Summary             | Type
+---+-------------+---------------------+--------
+i+ | mongodb-mms | MongoDB Ops Manager | package
+
 ```
 
+## rpm管理
 
-# YaST的用法
+-`q`: query（查询），用于查询软件包。
+-`a`: all（所有），用于查询所有已安装的软件包。
+-`l`: list（列出），用于列出指定软件包安装的所有文件
+
+**`-i`**: info（信息），用于显示软件包的详细信息
+
+```bash
+#查询已安装的软件包
+suse02:/etc # rpm -qa | grep mongodb
+mongodb-enterprise-database-tools-extra-7.0.12-1.suse15.x86_64
+mongodb-mongosh-2.2.13-1.el8.x86_64
+mongodb-database-tools-100.10.0-1.x86_64
+mongodb-enterprise-server-7.0.12-1.suse15.x86_64
+mongodb-enterprise-7.0.5-1.suse15.x86_64
+mongodb-enterprise-mongos-7.0.12-1.suse15.x86_64
+mongodb-enterprise-database-7.0.12-1.suse15.x86_64
+mongodb-enterprise-tools-7.0.12-1.suse15.x86_64
+mongodb-enterprise-cryptd-7.0.12-1.suse15.x86_64
+
+#查询某个软件包的文件路径
+suse02:/etc # rpm -qli mongodb-mongosh-2.2.13-1.el8.x86_64
+Name        : mongodb-mongosh
+Version     : 2.2.13
+Release     : 1.el8
+Architecture: x86_64
+Install Date: Sat Jul 27 21:17:20 2024
+Group       : Development/Tools
+Size        : 260781970
+License     : ASL 2.0 and Proprietary
+Signature   : RSA/SHA256, Thu Jul 25 23:01:41 2024, Key ID 160d26bb1785ba38
+Source RPM  : mongodb-mongosh-2.2.13-1.el8.src.rpm
+Build Date  : Thu Jul 25 00:46:32 2024
+Build Host  : ip-10-128-186-1.ec2.internal
+Relocations : (not relocatable)
+URL         : https://github.com/mongodb-js/mongosh
+Summary     : MongoDB Shell CLI REPL Package
+Description :
+MongoDB Shell CLI REPL Package
+Distribution: (none)
+/usr/bin/mongosh
+/usr/lib64/mongosh_crypt_v1.so
+/usr/share/doc/mongodb-mongosh
+/usr/share/doc/mongodb-mongosh/.sbom.json
+/usr/share/doc/mongodb-mongosh/README
+/usr/share/doc/mongodb-mongosh/THIRD_PARTY_NOTICES
+/usr/share/licenses/mongodb-mongosh
+/usr/share/licenses/mongodb-mongosh/LICENSE-crypt-library
+/usr/share/licenses/mongodb-mongosh/LICENSE-mongosh
+/usr/share/man/man1/mongosh.1.gz
+
+```
+

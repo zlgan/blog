@@ -22,6 +22,12 @@ Client ->> Server: 9.开始使用该密钥进行对称加密通讯
 
 ![image-20210616234634629](https://zlgan-blog.oss-cn-shenzhen.aliyuncs.com/image-20210616234634629.png)
 
+
+
+![image-20240731220911981](https://zlgan-blog.oss-cn-shenzhen.aliyuncs.com/image-20240731220911981.png)
+
+
+
 ### 自签名证书
 
 1. 首先虚拟出一个CA认证机构
