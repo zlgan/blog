@@ -363,17 +363,26 @@ IdentityServer4
 ```
 
 
-
-
-
 ![aa..excalidraw](E:\workspace\blog\assets\aa..excalidraw.svg)
-
 https://blog.csdn.net/qq_41813208/article/details/122310785
+https://seevae.github.io/2020/09/12/%E8%AF%A6%E8%A7%A3kerberos%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B/
 
 
+nslookup 命令学习
 
 
+PS E:\workspace> net config workstation
+Computer name                       aaa
+Full Computer name                   bb
+User name                            aa
 
+
+https://blog.csdn.net/qq_36279445/article/details/110647055
+
+
+# 查看系统中所有模块
+ $env:PSModulePath -split ";" |ls
+Get-Module 是一个 PowerShell 命令，用于列出当前会话中已加载的所有模块
 
 
 
