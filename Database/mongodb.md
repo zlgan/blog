@@ -132,6 +132,23 @@ switched to db mydatabase
 
 
 
+ISODate的格式：
+
+**日期扩展格式**: `YYYY-MM-DD`
+
+**时间扩展格式**: `hh:mm:ss`
+
+**日期和时间组合扩展格式**: `YYYY-MM-DDThh:mm:ss`
+
+时区偏移
+
+- UTC时间： 2024-08-09T06:34:56Z 
+- 北京时间：2024-08-09T14:34:56+08:00
+
+
+
+
+
 ### 操作collection
 
 #### 查询集合
@@ -365,17 +382,339 @@ DBCollection help
 
 
 
-# 副本集操作
+# Replica Set
 
-## 修改副本集配置
+## 集群状态信息rs.status()
+
+```json
+rs.status()
+{
+  set: 'rs0',
+  date: ISODate('2024-08-10T13:48:38.657Z'),
+  myState: 1,  //1主节点,2secondary节点
+  term: Long('11'), //选举发生的次数
+  syncSourceHost: '',
+  syncSourceId: -1,
+  heartbeatIntervalMillis: Long('2000'),
+  majorityVoteCount: 2,//选举主节点需要的节点数
+  writeMajorityCount: 2, //写关注要等待多少节点完成才返回
+  votingMembersCount: 3,
+  writableVotingMembersCount: 3,
+  optimes: {
+    lastCommittedOpTime: { ts: Timestamp({ t: 1723297715, i: 1 }), t: Long('11') },
+    lastCommittedWallTime: ISODate('2024-08-10T13:48:35.601Z'),
+    readConcernMajorityOpTime: { ts: Timestamp({ t: 1723297715, i: 1 }), t: Long('11') },
+    appliedOpTime: { ts: Timestamp({ t: 1723297715, i: 1 }), t: Long('11') },
+    durableOpTime: { ts: Timestamp({ t: 1723297715, i: 1 }), t: Long('11') },
+    lastAppliedWallTime: ISODate('2024-08-10T13:48:35.601Z'),
+    lastDurableWallTime: ISODate('2024-08-10T13:48:35.601Z')
+  },
+  lastStableRecoveryTimestamp: Timestamp({ t: 1723297715, i: 1 }),
+    
+ //与选举有关的状态：    
+  electionCandidateMetrics: {
+    lastElectionReason: 'electionTimeout',
+    lastElectionDate: ISODate('2024-08-10T13:38:10.294Z'),
+    electionTerm: Long('11'), //选举次数
+    lastCommittedOpTimeAtElection: { ts: Timestamp({ t: 1723131324, i: 1 }), t: Long('10') },
+    lastSeenOpTimeAtElection: { ts: Timestamp({ t: 1723297057, i: 1 }), t: Long('10') },
+    numVotesNeeded: 2,
+    priorityAtElection: 1,
+    electionTimeoutMillis: Long('10000'), //主节点多久没响应开始触发选举
+    numCatchUpOps: Long('0'),
+    newTermStartDate: ISODate('2024-08-10T13:38:15.448Z'),
+    wMajorityWriteAvailabilityDate: ISODate('2024-08-10T13:38:15.526Z')
+  },
+  electionParticipantMetrics: {
+    votedForCandidate: true,
+    electionTerm: Long('8'),
+    lastVoteDate: ISODate('2024-08-08T06:30:52.998Z'),
+    electionCandidateMemberId: 2,
+    voteReason: '',
+    lastAppliedOpTimeAtElection: { ts: Timestamp({ t: 1723098642, i: 1 }), t: Long('7') },
+    maxAppliedOpTimeInSet: { ts: Timestamp({ t: 1723098642, i: 1 }), t: Long('7') },
+    priorityAtElection: 1
+  },
+  members: [
+    {
+      _id: 0,
+      name: 'suse02:27017',
+      health: 1,
+      state: 1,
+      stateStr: 'PRIMARY',
+      uptime: 313913,
+      optime: { ts: Timestamp({ t: 1723297715, i: 1 }), t: Long('11') },
+      optimeDate: ISODate('2024-08-10T13:48:35.000Z'),
+      lastAppliedWallTime: ISODate('2024-08-10T13:48:35.601Z'),
+      lastDurableWallTime: ISODate('2024-08-10T13:48:35.601Z'),
+      syncSourceHost: '',
+      syncSourceId: -1,
+      infoMessage: '',
+      electionTime: Timestamp({ t: 1723297090, i: 1 }),
+      electionDate: ISODate('2024-08-10T13:38:10.000Z'),
+      configVersion: 6,
+      configTerm: 11,
+      self: true,
+      lastHeartbeatMessage: ''
+    },
+    {
+      _id: 1,
+      name: 'suse03:27017',
+      health: 1,
+      state: 2,
+      stateStr: 'SECONDARY',
+      uptime: 635,
+      optime: { ts: Timestamp({ t: 1723297715, i: 1 }), t: Long('11') },
+      optimeDurable: { ts: Timestamp({ t: 1723297715, i: 1 }), t: Long('11') },
+      optimeDate: ISODate('2024-08-10T13:48:35.000Z'),
+      optimeDurableDate: ISODate('2024-08-10T13:48:35.000Z'),
+      lastAppliedWallTime: ISODate('2024-08-10T13:48:35.601Z'),
+      lastDurableWallTime: ISODate('2024-08-10T13:48:35.601Z'),
+      lastHeartbeat: ISODate('2024-08-10T13:48:37.029Z'),
+      lastHeartbeatRecv: ISODate('2024-08-10T13:48:37.743Z'),
+      pingMs: Long('0'),
+      lastHeartbeatMessage: '',
+      syncSourceHost: 'suse02:27017',
+      syncSourceId: 0,
+      infoMessage: '',
+      configVersion: 6,
+      configTerm: 11
+    },
+    {
+      _id: 2,
+      name: 'suse04:27017',
+      health: 1,
+      state: 2,
+      stateStr: 'SECONDARY',
+      uptime: 623,
+      optime: { ts: Timestamp({ t: 1723297715, i: 1 }), t: Long('11') },
+      optimeDurable: { ts: Timestamp({ t: 1723297715, i: 1 }), t: Long('11') },
+      optimeDate: ISODate('2024-08-10T13:48:35.000Z'),
+      optimeDurableDate: ISODate('2024-08-10T13:48:35.000Z'),
+      lastAppliedWallTime: ISODate('2024-08-10T13:48:35.601Z'),
+      lastDurableWallTime: ISODate('2024-08-10T13:48:35.601Z'),
+      lastHeartbeat: ISODate('2024-08-10T13:48:37.110Z'),
+      lastHeartbeatRecv: ISODate('2024-08-10T13:48:37.310Z'),
+      pingMs: Long('0'),
+      lastHeartbeatMessage: '',
+      syncSourceHost: 'suse02:27017',
+      syncSourceId: 0,
+      infoMessage: '',
+      configVersion: 6,
+      configTerm: 11
+    }
+  ],
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1723297715, i: 1 }),
+    signature: {
+      hash: Binary.createFromBase64('AAAAAAAAAAAAAAAAAAAAAAAAAAA=', 0),
+      keyId: Long('0')
+    }
+  },
+  operationTime: Timestamp({ t: 1723297715, i: 1 })
+}
+Enterprise rs0 [direct: primary] test> 
 
 ```
+
+
+
+## 修改配置
+
+### 查看config
+
+```json
+Enterprise rs0 [direct: primary] test> rs.conf()
+{
+  _id: 'rs0',
+  version: 6,
+  term: 11,
+  members: [
+    {
+      _id: 0,
+      host: 'suse02:27017',
+      arbiterOnly: false, //是否为仲裁节点
+      buildIndexes: true,
+      hidden: false, //是否为隐藏节点
+      priority: 1, //该几点被选举成主节点的权重0：不被选举。
+      tags: {}, // 标签
+      secondaryDelaySecs: Long('0'),
+      votes: 1 //0:不能参与投票，1：参与投票
+    },
+    {
+      _id: 1,
+      host: 'suse03:27017',
+      arbiterOnly: false,
+      buildIndexes: true,
+      hidden: false,
+      priority: 1,
+      tags: {},
+      secondaryDelaySecs: Long('0'),
+      votes: 1
+    },
+    {
+      _id: 2,
+      host: 'suse04:27017',
+      arbiterOnly: false,
+      buildIndexes: true,
+      hidden: false,
+      priority: 1,
+      tags: {},
+      secondaryDelaySecs: Long('0'),
+      votes: 1
+    }
+  ],
+  protocolVersion: Long('1'),
+  writeConcernMajorityJournalDefault: true,
+  settings: {
+    chainingAllowed: true, //true:允许从其他second节点同步数据，false:只能从主节点同步数据
+    heartbeatIntervalMillis: 2000, //2秒中发送一次心跳
+    heartbeatTimeoutSecs: 10,
+    electionTimeoutMillis: 10000, //节点等待主节点心跳响应超过多久触发重新选举
+    catchUpTimeoutMillis: -1,
+    catchUpTakeoverDelayMillis: 30000,
+    getLastErrorModes: {},
+    getLastErrorDefaults: { w: 1, wtimeout: 0 },
+    replicaSetId: ObjectId('66a621526b571e56fecf292a')
+  }
+}
+
+```
+
+
+
+### 修改config
+
+```json
 cfg = rs.conf()
 cfg.members[0].host = "mongo2.example.net"
 rs.reconfig(cfg)
+rs.reconfig(cfg,{force:true}) //强制使集群重新运行
 ```
 
 https://www.thecodebuzz.com/mongodb-repository-implementation-unit-testing-net-core-example/
 
 https://github.com/brunobritodev/MongoDB-RepositoryUoWPatterns
+
+## oplog
+
+### 测试代码
+
+```python
+from pymongo import MongoClient
+import pprint
+client=MongoClient('mongodb://suse02:27017,suse03:27017,suse04:27017?replicaSet=rs0')
+db=client.demo
+collection=db.player
+collection.insert_one({"name":"qdn"})
+```
+
+### 查看oplog
+
+```json
+Enterprise rs0 [direct: secondary] test> use local
+switched to db local
+Enterprise rs0 [direct: secondary] local> db.oplog.rs.find({op:'i'}).sort({ts:-1}).limit(1)
+[
+  {
+    lsid: {
+      id: UUID('1bdd10d3-d207-4c99-8684-714e6c6b2d14'),
+      uid: Binary.createFromBase64('47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=', 0)
+    },
+    txnNumber: Long('1'),
+    op: 'i', //i=insert,u=update,d=delete,n=null不会引起数据变更
+    ns: 'demo.player', //collection
+    ui: UUID('02e6738a-3d10-42f9-97bd-c32141870490'),
+    //具体操作的动作
+    o: { _id: ObjectId('66b80d671c6c53c7510893f4'), name: 'qdn' },
+    //更新操作中的查询条件
+    o2: { _id: ObjectId('66b80d671c6c53c7510893f4') },
+    stmtId: 0,
+    ts: Timestamp({ t: 1723338087, i: 1 }),
+    //term:表示副本集中的主节点的任期编号
+    t: Long('12'),
+    v: Long('2'),
+    wall: ISODate('2024-08-11T01:01:27.715Z'),
+    prevOpTime: { ts: Timestamp({ t: 0, i: 0 }), t: Long('-1') }
+  }
+]    
+```
+
+### 查看oplog的默认配置
+
+```bash
+Enterprise rs0 [direct: secondary] local> rs.printReplicationInfo()
+actual oplog size
+'1149.365234375 MB'
+---
+configured oplog size
+'1149.365234375 MB'
+---
+log length start to end # oplog 中从第一个事件到最后一个事件的时间跨度
+'1175303 secs (326.47 hrs)'
+---
+oplog first event time
+'Sun Jul 28 2024 18:45:39 GMT+0800 (China Standard Time)'
+---
+oplog last event time
+'Sun Aug 11 2024 09:14:02 GMT+0800 (China Standard Time)'
+---
+now
+'Sun Aug 11 2024 17:14:10 GMT+0800 (China Standard Time)'
+```
+
+
+
+## failover
+
+# Authorization
+
+## sha1
+
+```bash
+#1.创建管理员用户
+use admin
+db.createUser({ user: "admin", pwd: "admin", roles: [{ role: "root", db: "admin" }] })
+
+#2.创建keyfile
+openssl rand -base64 756 > /etc/mongodb-keyfile
+
+#3.编辑配置文件
+vi /etc/mongod.conf
+security:
+    authorization: enabled
+    keyFile: /etc/mongodb-keyfile
+
+#4.设置keyfile的访问权限
+chmod 400 /etc/mongodb-keyfile
+chown mongod:mongod /etc/mongodb-keyfile 
+
+#5.使用账号登录
+mongosh -u "admin" -p "admin"
+```
+
+## kerberos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

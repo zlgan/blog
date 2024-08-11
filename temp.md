@@ -392,10 +392,9 @@ Get-Module 是一个 PowerShell 命令，用于列出当前会话中已加载的
 
 
 
+获取当前时间戳
 
-
-
-
+[System.DateTimeOffset]::UtcNow.ToUnixTimeSeconds()
 
 
 
