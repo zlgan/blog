@@ -6,26 +6,30 @@ powercfg /hibernate off #禁用休眠
 ```
 
 
-
-
-
 # 账户管理
 
 ```powershell
 #启用管理员账户
 net user Administrator /active:yes
-net user Administrator /active:yes
-
 
 #启用/禁用密码要求
 net user Administrator /passwordreq:yes
 
 ```
 
+# 进程管理
+```powershell
+#1.Find the target process
+PS C:\Users\administrator\Desktop> tasklist /fi "services eq mongo28017"
 
+Image Name                     PID Session Name        Session#    Mem Usage
+========================= ======== ================ =========== ============
+mongod.exe                   16232 Services                   0    267,620 K
 
-
-
+#2.Force kill the process 
+PS C:\Users\administrator\Desktop> taskkill /F /PID 16232
+SUCCESS: The process with PID 16232 has been terminated.
+```
 控制面板命令：
 
 control 打开控制面板

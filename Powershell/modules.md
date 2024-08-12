@@ -1,5 +1,5 @@
 ```powershell
-    
+# 显示当前session中已经加载的module    
 PS C:\Users\leozlgan>  **Get-Module** 
 
 ModuleType Version    Name                                ExportedCommands
@@ -8,6 +8,7 @@ Manifest   3.1.0.0    Microsoft.PowerShell.Management     {Add-Computer, Add-Con
 Manifest   3.1.0.0    Microsoft.PowerShell.Utility        {Add-Member, Add-Type, Clear-Variable, Compare-Object...}
 
 
+# 显示所有可用的module
 PS C:\Users\leozlgan>  **Get-Module -ListAvailable** 
 
 
@@ -40,6 +41,8 @@ Binary     1.0.0.1    PackageManagement                   {Find-Package, Get-Pac
 Script     1.0.0.1    PowerShellGet                       {Install-Module, Find-Module, Save-Module, Update-Module...}
 Manifest   20.0       SqlServer                           {Backup-SqlDatabase, Save-SqlMigrationReport, Add-SqlAvailabilityDatabase, Add-SqlAvailabilityGroupListenerStaticIp...}
 
+
+#显示Module的搜索路径
 PS C:\Users\leozlgan> $env:PSModulePath
 C:\Users\leozlgan\Documents\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules\;C:\Program Files (x86)\Microsoft SQL Server\130\Tools\PowerShell\Modules\;C:\Program Files\WindowsPowerShell\Modules\
 
@@ -59,5 +62,4 @@ $CustomObject |
 #多列排序
  Sort-Object -Property @{Expression = "Status"; Descending = $true},
                           @{Expression = "DisplayName"; Descending = $false}
-
 ```

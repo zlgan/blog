@@ -21,8 +21,6 @@ git log  --grep=keywords #过滤comment包含特定关键字的提交记录
 git log  --before='2020-1-1' --after='2020-2-2' #过滤时间范围
 git log  -- <file-path> #查询对指定目录的修改记录
 git log -S "UpdateDateTime" #按修改内容的关键字搜索
-
-则
 ```
 
 ## tag
@@ -86,27 +84,6 @@ git fetch #同步
 git fetch --prune #同步，并删除远程不存在的本地跟踪分支
 git pull # fetch并merge到当前分支 
 ```
-### aaa
-```bash
-
-```
-### aaa
-```bash
-
-```
-### aaa
-```bash
-
-```
-### aaa
-```bash
-
-```
-### aaa
-```bash
-
-```
-
 ## git 仓库操作
 ```bash
 #本地仓库与远程仓库建立关联
@@ -131,15 +108,6 @@ git restore --staged <path> #丢弃暂存区的修改，相当与撤销了git ad
 git restore  --source=origin/master  README.md #将文件恢复到远程分支的状态
 git reset --hard head 将当前工作区和暂存区都丢弃，恢复到最后一次提交时的状态
 ```
-
-### aaa
-```bash
-```
-
-### aaa
-```bash
-```
-
 ## rename
 1. 修改文件名，如果只修改文件名的大小写，git无法识别，此时应该使用 `git mv` 命令修改
 

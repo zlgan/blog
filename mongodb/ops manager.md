@@ -22,7 +22,7 @@ mkdir -p opsmanager/{data,log,conf}
 chmod -R 777 opsmanager
 ```
 
-1.4  在宿主机/opt/mongodb/conf下新建配置文件mongod.conf
+1.4  在宿主机/var/opsmanager/appdb/node{1,2,3}/conf 下新建配置文件mongod.conf
 
 ```yaml
 # mongod.conf
@@ -79,7 +79,7 @@ docker run --name mongodb_app3 -p 27003:27017 -d -v /var/opsmanager/appdb/node3/
 1.6 初始化副本集
 
 ```bash
-rs.initiate({_id:"rsapp",members:[{_id:0,host:"192.168.8.21:27001"},{_id:1,host:"192.168.8.22:27002"},{_id:2,host:"192.168.8.23:27003"}]})
+rs.initiate({_id:"rsapp",members:[{_id:0,host:"192.168.8.21:27001"},{_id:1,host:"192.168.8.21:27002"},{_id:2,host:"192.168.8.21:27003"}]})
 ```
 
 1.7 修改副本集配置
