@@ -212,10 +212,69 @@ yum list installed
 ```
 
 
+```bash
+#查看安装的组件
+suse02:/etc # rpm -qa |grep mongo
+mongodb-enterprise-database-tools-extra-7.0.12-1.suse15.x86_64
+mongodb-mongosh-2.2.13-1.el8.x86_64
+mongodb-database-tools-100.10.0-1.x86_64
+mongodb-enterprise-server-7.0.12-1.suse15.x86_64
+mongodb-enterprise-7.0.5-1.suse15.x86_64
+mongodb-enterprise-mongos-7.0.12-1.suse15.x86_64
+mongodb-enterprise-database-7.0.12-1.suse15.x86_64
+mongodb-enterprise-tools-7.0.12-1.suse15.x86_64
+mongodb-enterprise-cryptd-7.0.12-1.suse15.x86_64
 
-### 又一个包管理工具NTP
+#查看软件包信息和安装路径
+suse02:/etc # rpm -qil mongodb-enterprise-server-7.0.12-1.suse15.x86_64
+Name        : mongodb-enterprise-server
+Version     : 7.0.12
+Release     : 1.suse15
+Architecture: x86_64
+Install Date: Sat Jul 27 21:17:05 2024
+Group       : Applications/Databases
+Size        : 188180930
+License     : Commercial
+Signature   : RSA/SHA256, Sat Jun 29 04:05:52 2024, Key ID 160d26bb1785ba38
+Source RPM  : mongodb-enterprise-database-7.0.12-1.suse15.src.rpm
+Build Date  : Wed Jun 26 03:21:45 2024
+Build Host  : ip-10-128-153-135.ec2.internal
+Relocations : /usr /var /etc 
+URL         : http://www.mongodb.org
+Summary     : MongoDB database server (enterprise)
+Description :
+MongoDB is built for scalability, performance and high availability, scaling from single server deployments to large, complex multi-site architectures. By leveraging in-memory computing, MongoDB provides high performance for both reads and writes. MongoDB’s native replication and automated failover enable enterprise-grade reliability and operational flexibility.
 
-https://blog.csdn.net/urmljyc/article/details/106942732
+MongoDB is an open-source database used by companies of all sizes, across all industries and for a wide variety of applications. It is an agile database that allows schemas to change quickly as applications evolve, while still providing the functionality developers expect from traditional databases, such as secondary indexes, a full query language and strict consistency.
 
-yum-config-manager --disable itemName yum-config-manager --enable itemName
+MongoDB has a rich client ecosystem including hadoop integration, officially supported drivers for 10 programming languages and environments, as well as 40 drivers supported by the user community.
+
+MongoDB features:
+* JSON Data Model with Dynamic Schemas
+* Auto-Sharding for Horizontal Scalability
+* Built-In Replication for High Availability
+* Rich Secondary Indexes, including geospatial
+* TTL indexes
+* Text Search
+* Aggregation Framework & Native MapReduce
+
+This package contains the MongoDB server software, default configuration files, and systemd service files.
+Distribution: (none)
+/etc/mongod.conf
+/run/mongodb
+/usr/bin/mongod
+/usr/lib/systemd/system/mongod.service
+/usr/share/doc/packages/mongodb-enterprise-server
+/usr/share/doc/packages/mongodb-enterprise-server/LICENSE-Enterprise.txt
+/usr/share/doc/packages/mongodb-enterprise-server/MPL-2
+/usr/share/doc/packages/mongodb-enterprise-server/README
+/usr/share/doc/packages/mongodb-enterprise-server/THIRD-PARTY-NOTICES
+/usr/share/man/man1/mongod.1.gz
+/usr/share/man/man5/mongodb-parameters.5.gz
+/var/lib/mongo
+/var/log/mongodb
+/var/log/mongodb/mongod.log
+
+
+```
 

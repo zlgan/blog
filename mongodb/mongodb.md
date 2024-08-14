@@ -1,15 +1,4 @@
-### mongodb概念篇
-
-www.mongodb.com
-
-database>collection>document
-
-1. mongodb 的前端
-
-   1. mongo shell
-   2. mongo compass
-
-2. 引擎
+# mongodb概念篇
 
    1. WiredTiger
 
@@ -24,8 +13,7 @@ database>collection>document
 ![image-20240126222305971](https://zlgan-blog.oss-cn-shenzhen.aliyuncs.com/image-20240126222305971.png)
 
 
-
-# 安装
+# 安装信息
 
 ```bash
 #查看安装的组件
@@ -95,26 +83,7 @@ Distribution: (none)
 
 
 
-
-
-
-
-迁移的问题：
-
-1. 索引，视图，函数，存储过程
-2. 数据库事务如何保证
-3. 直接保存一对多的关系，存在大量冗余？
-
-
-
-mogo优点：
-
-1. 横向扩展能力
-2. 直接存储文本，图片，视频，二进制文件？
-3. 分片架构
-4. 数据加载到内存的，定时保存到磁盘中，公式通过日志恢复同步失败的情况。
-
-### 数据库操作
+# 数据库管理
 
 ```bash
 #删除数据库
@@ -129,25 +98,6 @@ switched to db mydatabase
  
 
 ```
-
-
-
-ISODate的格式：
-
-**日期扩展格式**: `YYYY-MM-DD`
-
-**时间扩展格式**: `hh:mm:ss`
-
-**日期和时间组合扩展格式**: `YYYY-MM-DDThh:mm:ss`
-
-时区偏移
-
-- UTC时间： 2024-08-09T06:34:56Z 
-- 北京时间：2024-08-09T14:34:56+08:00
-
-
-
-
 
 ### 操作collection
 
@@ -204,33 +154,7 @@ switched to db admin
         "inheritedRoles" : [ ]
 }
 ```
-
-
-
-#### 删除角色
-
-```
-
-```
-
- 
-
-### 副本集搭建
-
-### 分片集群
-
-
-
-### 疑问
-
-1. 每个文档保存完整树状信息，是否存在冗余？
-2. 
-
-### mongo shell 帮助
-
-
-
-#### 查看所有的帮助（help命令）
+# 查看帮助（help命令）
 
 ```
 > help
@@ -258,63 +182,383 @@ switched to db admin
         exit                         quit the mongo shell
 ```
 
-#### db的帮助
+## db.help()
 
-```powershell
+```json
 > db.help()
-DB methods:
-        db.adminCommand(nameOrDocument) - switches to 'admin' db, and runs command [just calls db.runCommand(...)]
-        db.aggregate([pipeline], {options}) - performs a collectionless aggregation on this database; returns a cursor
-        db.auth(username, password)
-        db.commandHelp(name) returns the help for the command
-        db.createUser(userDocument)
-        db.createView(name, viewOn, [{$operator: {...}}, ...], {viewOptions})
-        db.currentOp() displays currently executing operations in the db
-        db.dropDatabase(writeConcern)
-        db.dropUser(username)
-        db.eval() - deprecated
-        db.fsyncLock() flush data to disk and lock server for backups
-        db.fsyncUnlock() unlocks server following a db.fsyncLock()
-        db.getCollection(cname) same as db['cname'] or db.cname
-        db.getCollectionInfos([filter]) - returns a list that contains the names and options of the db's collections
-        db.getCollectionNames()
-        db.getLastError() - just returns the err msg string
-        db.getLastErrorObj() - return full status object
-        db.getLogComponents()
-        db.getMongo() get the server connection object
-        db.getMongo().setSecondaryOk() allow queries on a replication secondary server
-        db.getName()
-        db.getProfilingLevel() - deprecated
-        db.getProfilingStatus() - returns if profiling is on and slow threshold
-        db.getReplicationInfo()
-        db.getSiblingDB(name) get the db at the same server as this one
-        db.getWriteConcern() - returns the write concern used for any operations on this db, inherited from server object if set
-        db.hostInfo() get details about the server's host
-        db.isMaster() check replica primary status
-        db.hello() check replica primary status
-        db.killOp(opid) kills the current operation in the db
-        db.listCommands() lists all the db commands
-        db.loadServerScripts() loads all the scripts in db.system.js
-        db.logout()
-        db.printCollectionStats()
-        db.printReplicationInfo()
-        db.printShardingStatus()
-        db.printSecondaryReplicationInfo()
-        db.rotateCertificates(message) - rotates certificates, CRLs, and CA files and logs an optional message
-        db.runCommand(cmdObj) run a database command.  if cmdObj is a string, turns it into {cmdObj: 1}
-        db.serverStatus()
-        db.setLogLevel(level,<component>)
-        db.setProfilingLevel(level,slowms) 0=off 1=slow 2=all
-        db.setVerboseShell(flag) display extra information in shell output
-        db.setWriteConcern(<write concern doc>) - sets the write concern for writes to the db
-        db.shutdownServer()
-        db.stats()
-        db.unsetWriteConcern(<write concern doc>) - unsets the write concern for writes to the db
-        db.version() current version of the server
-        db.watch() - opens a change stream cursor for a database to report on all  changes to its non-system collections.
+{
+  "help": "Database Class",
+  "docs": null,
+  "attr": [
+    {
+      "name": "getMongo",
+      "description": "Returns the current database connection"
+    },
+    {
+      "name": "getName",
+      "description": "Returns the name of the DB"
+    },
+    {
+      "name": "getCollectionNames",
+      "description": "Returns an array containing the names of all collections in the current database."
+    },
+    {
+      "name": "getCollectionInfos",
+      "description": "Returns an array of documents with collection information, i.e. collection name and options, for the current database."
+    },
+    {
+      "name": "runCommand",
+      "description": "Runs an arbitrary command on the database."
+    },
+    {
+      "name": "adminCommand",
+      "description": "Runs an arbitrary command against the admin database."
+    },
+    {
+      "name": "aggregate",
+      "description": "Runs a specified admin/diagnostic pipeline which does not require an underlying collection."
+    },
+    {
+      "name": "getSiblingDB",
+      "description": "Returns another database without modifying the db variable in the shell environment."
+    },
+    {
+      "name": "getCollection",
+      "description": "Returns a collection or a view object that is functionally equivalent to using the db.<collectionName>."
+    },
+    {
+      "name": "dropDatabase",
+      "description": "Removes the current database, deleting the associated data files."
+    },
+    {
+      "name": "createUser",
+      "description": "Creates a new user for the database on which the method is run. db.createUser() returns a duplicate user error if the user already exists on the database."
+    },
+    {
+      "name": "updateUser",
+      "description": "Updates the user’s profile on the database on which you run the method. An update to a field completely replaces the previous field’s values. This includes updates to the user’s roles array."
+    },
+    {
+      "name": "changeUserPassword",
+      "description": "Updates a user’s password. Run the method in the database where the user is defined, i.e. the database you created the user."
+    },
+    {
+      "name": "logout",
+      "description": "Ends the current authentication session. This function has no effect if the current session is not authenticated."
+    },
+    {
+      "name": "dropUser",
+      "description": "Removes the user from the current database."
+    },
+    {
+      "name": "dropAllUsers",
+      "description": "Removes all users from the current database."
+    },
+    {
+      "name": "auth",
+      "description": "Allows a user to authenticate to the database from within the shell."
+    },
+    {
+      "name": "grantRolesToUser",
+      "description": "Grants additional roles to a user."
+    },
+    {
+      "name": "revokeRolesFromUser",
+      "description": "Removes a one or more roles from a user on the current database."
+    },
+    {
+      "name": "getUser",
+      "description": "Returns user information for a specified user. Run this method on the user’s database. The user must exist on the database on which the method runs."
+    },
+    {
+      "name": "getUsers",
+      "description": "Returns information for all the users in the database."
+    },
+    {
+      "name": "createCollection",
+      "description": "Create new collection"
+    },
+    {
+      "name": "createEncryptedCollection",
+      "description": "Creates a new collection with a list of encrypted fields each with unique and auto-created data encryption keys (DEKs). This is a utility function that internally utilises ClientEnryption.createEncryptedCollection."
+    },
+    {
+      "name": "createView",
+      "description": "Create new view"
+    },
+    {
+      "name": "createRole",
+      "description": "Creates a new role."
+    },
+    {
+      "name": "updateRole",
+      "description": "Updates the role’s profile on the database on which you run the method. An update to a field completely replaces the previous field’s values."
+    },
+    {
+      "name": "dropRole",
+      "description": "Removes the role from the current database."
+    },
+    {
+      "name": "dropAllRoles",
+      "description": "Removes all roles from the current database."
+    },
+    {
+      "name": "grantRolesToRole",
+      "description": "Grants additional roles to a role."
+    },
+    {
+      "name": "revokeRolesFromRole",
+      "description": "Removes a one or more roles from a role on the current database."
+    },
+    {
+      "name": "grantPrivilegesToRole",
+      "description": "Grants additional privileges to a role."
+    },
+    {
+      "name": "revokePrivilegesFromRole",
+      "description": "Removes a one or more privileges from a role on the current database."
+    },
+    {
+      "name": "getRole",
+      "description": "Returns role information for a specified role. Run this method on the role’s database. The role must exist on the database on which the method runs."
+    },
+    {
+      "name": "getRoles",
+      "description": "Returns information for all the roles in the database."
+    },
+    {
+      "name": "currentOp",
+      "description": "Runs an aggregation using $currentOp operator. Returns a document that contains information on in-progress operations for the database instance. For further information, see $currentOp."
+    },
+    {
+      "name": "killOp",
+      "description": "Calls the killOp command. Terminates an operation as specified by the operation ID. To find operations and their corresponding IDs, see $currentOp or db.currentOp()."
+    },
+    {
+      "name": "shutdownServer",
+      "description": "Calls the shutdown command. Shuts down the current mongod or mongos process cleanly and safely. You must issue the db.shutdownServer() operation against the admin database."
+    },
+    {
+      "name": "fsyncLock",
+      "description": "Calls the fsync command. Forces the mongod to flush all pending write operations to disk and locks the entire mongod instance to prevent additional writes until the user releases the lock with a corresponding db.fsyncUnlock() command."
+    },
+    {
+      "name": "fsyncUnlock",
+      "description": "Calls the fsyncUnlock command. Reduces the lock taken by db.fsyncLock() on a mongod instance by 1."
+    },
+    {
+      "name": "version",
+      "description": "returns the db version. uses the buildinfo command"
+    },
+    {
+      "name": "serverBits",
+      "description": "returns the db serverBits. uses the buildInfo command"
+    },
+    {
+      "name": "isMaster",
+      "description": "Calls the isMaster command"
+    },
+    {
+      "name": "hello",
+      "description": "Calls the hello command"
+    },
+    {
+      "name": "serverBuildInfo",
+      "description": "returns the db serverBuildInfo. uses the buildInfo command"
+    },
+    {
+      "name": "serverStatus",
+      "description": "returns the server stats. uses the serverStatus command"
+    },
+    {
+      "name": "stats",
+      "description": "returns the db stats. uses the dbStats command"
+    },
+    {
+      "name": "hostInfo",
+      "description": "Calls the hostInfo command"
+    },
+    {
+      "name": "serverCmdLineOpts",
+      "description": "returns the db serverCmdLineOpts. uses the getCmdLineOpts command"
+    },
+    {
+      "name": "rotateCertificates",
+      "description": "Calls the rotateCertificates command"
+    },
+    {
+      "name": "printCollectionStats",
+      "description": "Prints the collection.stats for each collection in the db."
+    },
+    {
+      "name": "getProfilingStatus",
+      "description": "returns the db getProfilingStatus. uses the profile command"
+    },
+    {
+      "name": "setProfilingLevel",
+      "description": "returns the db setProfilingLevel. uses the profile command"
+    },
+    {
+      "name": "setLogLevel",
+      "description": "returns the db setLogLevel. uses the setParameter command"
+    },
+    {
+      "name": "getLogComponents",
+      "description": "returns the db getLogComponents. uses the getParameter command"
+    },
+    {
+      "name": "cloneDatabase",
+      "description": "deprecated, non-functional"
+    },
+    {
+      "name": "cloneCollection",
+      "description": "deprecated, non-functional"
+    },
+    {
+      "name": "copyDatabase",
+      "description": "deprecated, non-functional"
+    },
+    {
+      "name": "commandHelp",
+      "description": "returns the db commandHelp. uses the passed in command with help: true"
+    },
+    {
+      "name": "listCommands",
+      "description": "Calls the listCommands command"
+    },
+    {
+      "name": "getLastErrorObj",
+      "description": "Calls the getLastError command"
+    },
+    {
+      "name": "getLastError",
+      "description": "Calls the getLastError command"
+    },
+    {
+      "name": "printShardingStatus",
+      "description": "Calls sh.status(verbose)"
+    },
+    {
+      "name": "printSecondaryReplicationInfo",
+      "description": "Prints secondary replicaset information"
+    },
+    {
+      "name": "getReplicationInfo",
+      "description": "Returns replication information"
+    },
+    {
+      "name": "printReplicationInfo",
+      "description": "Formats sh.getReplicationInfo"
+    },
+    {
+      "name": "printSlaveReplicationInfo",
+      "description": "DEPRECATED. Use db.printSecondaryReplicationInfo"
+    },
+    {
+      "name": "setSecondaryOk",
+      "description": "This method is deprecated. Use db.getMongo().setReadPref() instead"
+    },
+    {
+      "name": "watch",
+      "description": "Opens a change stream cursor on the database"
+    },
+    {
+      "name": "sql",
+      "description": "(Experimental) Runs a SQL query against Atlas Data Lake. Note: this is an experimental feature that may be subject to change in future releases."
+    },
+    {
+      "name": "checkMetadataConsistency",
+      "description": "Returns a cursor with information about metadata inconsistencies"
+    }
+  ]
+}
 ```
 
-#### collections的帮助
+
+## rs.help()
+
+```json
+{
+  "help": "Replica Set Class",
+  "docs": "https://docs.mongodb.com/manual/reference/method/js-replication/",
+  "attr": [
+    {
+      "name": "initiate",
+      "description": "Initiates the replica set."
+    },
+    {
+      "name": "config",
+      "description": "Returns a document that contains the current replica set configuration."
+    },
+    {
+      "name": "conf",
+      "description": "Calls replSetConfig"
+    },
+    {
+      "name": "reconfig",
+      "description": "Reconfigures an existing replica set, overwriting the existing replica set configuration."
+    },
+    {
+      "name": "reconfigForPSASet",
+      "description": "Reconfigures an existing replica set, overwriting the existing replica set configuration, if the reconfiguration is a transition from a Primary-Arbiter to a Primary-Secondary-Arbiter set."
+    },
+    {
+      "name": "status",
+      "description": "Calls replSetGetStatus"
+    },
+    {
+      "name": "isMaster",
+      "description": "Calls isMaster"
+    },
+    {
+      "name": "hello",
+      "description": "Calls hello"
+    },
+    {
+      "name": "printSecondaryReplicationInfo",
+      "description": "Calls db.printSecondaryReplicationInfo"
+    },
+    {
+      "name": "printSlaveReplicationInfo",
+      "description": "DEPRECATED. Use rs.printSecondaryReplicationInfo"
+    },
+    {
+      "name": "printReplicationInfo",
+      "description": "Calls db.printReplicationInfo"
+    },
+    {
+      "name": "add",
+      "description": "Adds replica set member to replica set."
+    },
+    {
+      "name": "addArb",
+      "description": "Calls rs.add with arbiterOnly=true"
+    },
+    {
+      "name": "remove",
+      "description": "Removes a replica set member."
+    },
+    {
+      "name": "freeze",
+      "description": "Prevents the current member from seeking election as primary for a period of time. Uses the replSetFreeze command"
+    },
+    {
+      "name": "stepDown",
+      "description": "Causes the current primary to become a secondary which forces an election. If no stepDownSecs is provided, uses 60 seconds. Uses the replSetStepDown command"
+    },
+    {
+      "name": "syncFrom",
+      "description": "Sets the member that this replica set member will sync from, overriding the default sync target selection logic."
+    },
+    {
+      "name": "secondaryOk",
+      "description": "This method is deprecated. Use db.getMongo().setReadPref() instead"
+    }
+  ]
+}
+```
+
+### collections.help()
 
 ```bash
 > db.collections.help()
