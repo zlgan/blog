@@ -1,3 +1,8 @@
+# 查看windows版本
+```powershell
+winver
+```
+
 # 电源管理
 
 ```powershell
