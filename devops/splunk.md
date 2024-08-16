@@ -21,19 +21,19 @@ index=iosbs sourcetype=iosbs_txn_pushas  (source="*PersonalizationService*.log" 
 # gamification 
 ```bash
 #All
-index=iosbs gamification earliest=-3h
+index=iosbs sourcetype=iosbs_txn_gameas earliest=-3h
 
 #AS
-index=iosbs host="magameas*" earliest=-3h
+index=iosbs sourcetype=iosbs_txn_gameas host="magameas*" earliest=-3h
 
 #Web
-index=iosbs host!="magameas*" earliest=-5h  (gamification or objectstorage)
+index=iosbs  host!="magameas*" earliest=-5h  (gamification or objectstorage)
 
 #goalx
-index=iosbs host="magameas*" earliest=-5h ">> HTTP" 
+index=iosbs sourcetype=iosbs_txn_gameas host="magameas*" earliest=-5h ">> HTTP" 
 
 #IBURN
-index=iosbs host="magameas*" earliest=-5h "AcceptMessageEvent" 
+index=iosbs sourcetype=iosbs_txn_gameas host="magameas*" earliest=-5h "AcceptMessageEvent" 
 
 ```
 

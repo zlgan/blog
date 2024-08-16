@@ -1,7 +1,4 @@
 
-
-
-
 --EDA
 https://aws.amazon.com/cn/what-is/eda/
 https://solace.com/what-is-event-driven-architecture/
@@ -19,29 +16,6 @@ hehe
 
 https://docs.github.com/zh
 
-
-要查询当前数据库中未提交的事务，你可以使用以下SQL查询：
-
-```sql
-SELECT
-    r.session_id,
-    r.transaction_id,
-    r.database_id,
-    t.name AS 'Transaction Name',
-    r.status,
-    r.command,
-    r.wait_type,
-    r.wait_time,
-    r.percent_complete,
-    r.estimated_completion_time,
-    r.cpu_time,
-    r.total_elapsed_time
-FROM sys.dm_exec_requests r
-INNER JOIN sys.dm_tran_session_transactions t
-ON r.session_id = t.session_id;
-```
-
-这个查询会返回当前数据库中正在执行的事务的相关信息，包括事务ID、数据库ID、事务状态等等。你可以根据需要进一步筛选未提交的事务。
 
 # develop app
 - https://32a3058a.isolation.zscaler.com/profile/9160b3a5-1571-41d2-a091-3762f83cdc25/zia-session/?controls_id=d90c6343-5842-4bb5-a982-43a9ae951f9f&region=sin&tenant=29ce959a9fd0&user=a2119ee0529d2dc4e2c92f29946a5d04f381ba599e9de9ea28d1df7d7e22c2ea&original_url=https%3A%2F%2Fkotlin.liying-cn.net%2Fdocs%2Freference_zh%2Fcross-platform-frameworks.html&key=sh-1&hmac=ff7c821687a31f68eedf608e4f89847b5b09a3c08c23dc3169365e4bc62e9168
@@ -106,7 +80,6 @@ DDD设计心得：
 7. .GetAwaiter().GetResult();
 8. 
 # 20231213
-winver命令查看当前操作系统信息
 设置windodws输入法快捷键参考： https://support.hp.com/hk-zh/document/c01349985
 vscode 重构小技巧之代码包裹：
 1. ctrl+. 打开建议菜单
