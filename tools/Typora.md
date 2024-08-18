@@ -14,7 +14,7 @@ categories: Tools
 - Ctrl+N 新建文档
 - Ctrl+HOME 跳轉到開頭
 - Ctrl+END 跳轉到末尾
-- \ 转义，原样输出，禁止Typora解析
+- \ 转义，原样输出，禁止 Typora 解析
 - ctrl+shift+f 全局搜索
 - ctrl+L 选中当前行
 
@@ -22,7 +22,7 @@ categories: Tools
 
 ---
 
-#  N级标题(Ctrl+N )
+#  N 级标题(Ctrl+N )
 
  正文文本(Ctrl+0)
 
@@ -32,7 +32,7 @@ categories: Tools
 ** 加粗**
 ```
 
- <u>下划线</u>(Ctrl+u)
+ <u> 下划线 </u>(Ctrl+u)
 
 ```
 <u>下划线</u>
@@ -124,7 +124,7 @@ categories: Tools
 - Ctrl+F 查找
 - Ctrl+H 替換
 
-### 3.Typora自定义的
+### 3.Typora 自定义的
 
 1. 上标 X^2^
 
@@ -132,7 +132,7 @@ categories: Tools
 
 3. ==高亮显示==
 
-4. emoji ​,​输入​冒号​：​然后​选择:upside_down_face: :dog:
+4. emoji ​,​输入​冒号​：​然后​选择: upside_down_face: : dog:
 
 5. 生成目录 [toc]
 
@@ -203,3 +203,6 @@ p .md-image:only-child{
 }
 ```
 
+# 安装插件
+
+[GitHub - obgnail/typora_plugin: Typora plugin. Feature enhancement tool | Typora 插件，功能增强工具](https://github.com/obgnail/typora_plugin)

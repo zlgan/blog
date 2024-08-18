@@ -18,7 +18,7 @@
    #查询SPN
    setspn -l
    #创建SPN，并关联登录账号
-   setspn.exe -S mongodb/testserver.example.net@EXAMPLE.NET reportingapp@EXAMPLE.NET
+   setspn.exe -S mongodb38017/winServer02.top.com mongouser
    ```
 
 3. 将 Kerberos 用户主体添加到 MongoDB
@@ -28,8 +28,8 @@
 use $external
 db.createUser(
    {
-     user: "reportingapp@EXAMPLE.NET",
-     roles: [ { role: "read", db: "records" } ]
+     user: "mongouser@top.com",
+     roles: [ { role: "root", db: "records" } ]
    }
 )
 ```

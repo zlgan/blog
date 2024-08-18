@@ -27,6 +27,13 @@ database>collection>document
 
 # 安装
 
+```
+ #windows上以服务的方式启动mongod
+ .\mongod.exe --config "C:\mongodb\replset1\mongod1.conf"  --install --serviceName mongodb28017 --serviceDisplayName mongodb28017
+```
+
+
+
 ```bash
 #查看安装的组件
 suse02:/etc # rpm -qa |grep mongo
