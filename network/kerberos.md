@@ -12,13 +12,18 @@
 
    为集群中所有节点创建SPN（ Service Principal Name）服务主体名，并关联到指定账户
 
->   setspn.exe -S <service>/<fully qualified domain name> <service account name>
+>   setspn.exe -S <service>/<fully qualified domain name>@<KERBEROS REALM>
 
    ```powershell
-   #查询SPN
-   setspn -l
+   #删除注册
+   setspn.exe -D mongodb38017/winServer02.top.com top\mongouser
    #创建SPN，并关联登录账号
-   setspn.exe -S mongodb38017/winServer02.top.com mongouser
+   setspn.exe -S mongodb38017/winServer02.top.com top\mongouser
+   #查询SPN
+   PS C:\Users\Administrator\Desktop> setspn -l mongouser
+   Registered ServicePrincipalNames 用于 CN=mongouser,CN=Users,DC=top,DC=com:
+           mongodb/winServer02.top.com
+           mongodb/winServer02.top.com:38017
    ```
 
 3. 将 Kerberos 用户主体添加到 MongoDB
@@ -44,6 +49,12 @@ db.createUser(
    # +rndpass：生成一个随机密码，并将其与 keytab 文件一起输出。这样可以确保 keytab 文件中包含一个安全的随机密码
    # -ptype KRB5_NT_SRV_HST：指定主体类型。在这里，主体类型为 KRB5_NT_SRV_HST（Kerberos 服务主体）
    # -out fss-mt-ad-1.keytab：指定生成的 keytab 文件的输出路径和文件名。在这里，生成的 keytab 文件将保存为 fss-mt-ad-1.keytab
+   ```
+
+5. 连接测试：
+
+   ```
+   PS C:\Users\mongouser\Desktop> mongosh.exe --host  winServer02.top.com --port 38017 --authenticationMechanism=GSSAPI --authenticationDatabase='$external' --username  'top\mongouser'
    ```
 
    
