@@ -34,11 +34,19 @@ use $external
 db.createUser(
    {
      user: "mongouser@top.com",
-     roles: [ { role: "root", db: "records" } ]
+     roles: [ { role: "root", db: "admin" } ]
    }
 )
 ```
 
+3. 服务器配置
+
+```powershell
+security:
+   authorization: enabled
+setParameter:
+   authenticationMechanisms: GSSAPI
+```
 4. 生成keytab密钥表文件（linux平台的服务需要）
 
    ```powershell
@@ -79,3 +87,6 @@ db.createUser(
 
 https://seevae.github.io/2020/09/12/%E8%AF%A6%E8%A7%A3kerberos%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B/
 
+
+# trouble shoting
+- InitializeSecurityContext: No credentials are available in the security package
