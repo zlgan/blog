@@ -90,3 +90,11 @@ https://seevae.github.io/2020/09/12/%E8%AF%A6%E8%A7%A3kerberos%E8%AE%A4%E8%AF%81
 
 # trouble shoting
 - InitializeSecurityContext: No credentials are available in the security package
+> 以域账户登录系统
+- InitializeSecurityContext: The specified target is unknown or unreachable
+
+> kdc中注册SPN不要加@后缀
+
+- connect ECONNREFUSED 10.194.168.198:27017
+
+- DecryptMessage: The handle specified is invalid
