@@ -33,8 +33,8 @@
 use $external
 db.createUser(
    {
-     user: "mongouser@top.com",
-     roles: [ { role: "root", db: "records" } ]
+     user: "mongouser@TOP.COM",
+     roles: [ { role: "root", db: "admin" } ]
    }
 )
 ```
