@@ -1,16 +1,34 @@
+# servers:
+
+| ip             | hostname        | roles         | domain | platform            | account                     |
+| -------------- | --------------- | ------------- | ------ | ------------------- | --------------------------- |
+| 10.194.168.196 | EWIN2WW311-DIT3 | AD-DC,DNS,KDC | dev.hk | windows server 2019 | dev\administrator 0000abc!! |
+| 10.194.168.197 | MBSINFOAS11-DIT | Mongod        | dev.hk | windows server 2019 |                             |
+| 10.194.168.198 | EWIN2INFOAS01-D | Client        | dev.hk | windows server 2019 |                             |
+
 # setup
 
 ## KDC
 
 ### create domain user for service
 
-```
-#1.create user
-dev\mongouser
-#2.set Delegation
+```powershell
+[10.194.168.196]: PS C:\> Get-ADUser mongouser
+DistinguishedName : CN=mongouser,CN=Users,DC=dev,DC=hk
+Enabled           : True
+GivenName         : mongouser
+Name              : mongouser
+ObjectClass       : user
+ObjectGUID        : c1d9cfa5-01e0-4b71-841b-a4d931989d18
+SamAccountName    : mongouser
+SID               : S-1-5-21-217758136-131099017-4145448323-1106
+Surname           :
+UserPrincipalName : mongouser@dev.hk
 ```
 
 ### Add SPN for mongod
+
+> 1.同一个节点多个端口运行的服务只需要注册一次
 
 ```powershell
 #删除注册
@@ -22,7 +40,7 @@ setspn.exe -S Mongodb/MBSINFOAS11-DIT.dev.hk dev\mongouser
 Registered ServicePrincipalNames for CN=mongouser,CN=Users,DC=dev,DC=hk:
         Mongodb/MBSINFOAS11-DIT.dev.hk
 ```
-### 生成密钥表
+### 生成密钥表keytab
 
 ```powershell
 ktpass -princ HTTP/my-mss-server.my-company.com@MYDOMAIN.COM -mapuser my-mss-deployment@MYDOMAIN.COM -pass password -ptype KRB5_NT_PRINCIPAL -crypto ALL -out my-mss-deployment.keytab
@@ -40,7 +58,8 @@ db.createUser(
     pwd: "0000abc!",
     roles: [
       { role: "userAdminAnyDatabase", db: "admin" },
-      { role: "readWriteAnyDatabase", db: "admin" }
+      { role: "readWriteAnyDatabase", db: "admin" },
+      { role: "root", db: "admin" }
     ]
   }
 )
@@ -50,7 +69,7 @@ use $external
 db.createUser(
    {
      user: "mongouser@DEV.HK",
-     roles: [ { role: "read", db: "test" } ]
+     roles: [ { role: "root", db: "admin" } ]
    }
 )
 ```
@@ -64,7 +83,120 @@ setParameter:
    authenticationMechanisms: GSSAPI
 ```
 
+### 以mongouser@DEV.HK身份运行服务
+
+```
+ mongod.exe --config "F:\mongodb\Node1\cfg\mongod.cfg"  --install --serviceName mongodb27018 --serviceDisplayName mongodb27018 --serviceUser 'mongouser@dev.hk' --servicePassword '0000abc!'
+```
+
+###  on container
+
+```shell
+
+docker run \
+-e KRB5_KTNAME=/data/conf/mongokerb1.keytab \
+--hostname mongokerb1.dev.hk \
+--name mongodb_kerberos1 \
+-p 28101:27017 -d \
+-v /var/mongodb/kerberos/node1/data:/data/data \
+-v /var/mongodb/kerberos/node1/log/:/data/log/ \
+-v /var/mongodb/kerberos/node1/conf/:/data/conf/ \
+--ulimit nofile=64000:64000 \
+mongodb/mongodb-enterprise-server-krb5client  --config /data/conf/mongod.conf
+
+
+
+#export keytab
+ktpass -princ mongodb/mongokerb1.dev.hk@DEV.HK -mapuser mongouser@DEV.HK -pass 0000abc! -ptype KRB5_NT_PRINCIPAL -crypto ALL -out mongokerb1.keytab
+
+#show keytab
+klist -k mongokerb1.keytab
+Keytab name: FILE:mongokerb1.keytab
+KVNO Principal
+---- --------------------------------------------------------------------------
+   3 mongodb/mongokerb1.dev.hk@DEV.HK
+   3 mongodb/mongokerb1.dev.hk@DEV.HK
+   3 mongodb/mongokerb1.dev.hk@DEV.HK
+   3 mongodb/mongokerb1.dev.hk@DEV.HK
+   3 mongodb/mongokerb1.dev.hk@DEV.HK
+   
+   
+```
+
+#### validate environment
+
+```shell
+bash-5.1# mongokerberos --client --username mongod
+Resolving kerberos environment...
+[OK] Kerberos environment resolved without errors.
+
+Verifying DNS resolution works with Kerberos service at mongokerb1.dev.hk...
+[OK] DNS test successful.
+
+Getting MIT Kerberos KRB5 environment variables...
+        * KRB5CCNAME: not set.
+        * KRB5_CLIENT_KTNAME: not set.
+        * KRB5_CONFIG: not set.
+        * KRB5_KTNAME: /data/conf/mongokerb1.keytab
+        * KRB5_TRACE: not set.
+[OK]
+
+Verifying existence of KRB5 client keytab FILE:/var/kerberos/krb5/user/0/client.keytab...
+[INFO] KRB5 Client keytab does not exist.
+        * Users without a client keytab need to kinit in order to obtain TGTs.
+
+Checking principal(s) in KRB5 keytab...
+[FAIL] Neither client keytab nor credentials cache contains entry with user principal name for specified --user mongod   
+```
+
+
+
+#### krb5.conf
+
+```
+# To opt out of the system crypto-policies configuration of krb5, remove the
+# symlink at /etc/krb5.conf.d/crypto-policies which will not be recreated.
+includedir /etc/krb5.conf.d/
+
+[logging]
+    default = FILE:/var/log/krb5libs.log
+    kdc = FILE:/var/log/krb5kdc.log
+    admin_server = FILE:/var/log/kadmind.log
+
+[libdefaults]
+    dns_lookup_realm = false
+    ticket_lifetime = 24h
+    renew_lifetime = 7d
+    forwardable = true
+    rdns = false
+    pkinit_anchors = FILE:/etc/pki/tls/certs/ca-bundle.crt
+    spake_preauth_groups = edwards25519
+    dns_canonicalize_hostname = fallback
+    qualify_shortname = ""
+    default_realm = DEV.HK
+    default_ccache_name = KEYRING:persistent:%{uid}
+
+[realms]
+ DEV.HK = {
+     kdc = EWIN2WW311-DIT3.dev.hk
+     admin_server = EWIN2WW311-DIT3.dev.hk
+ }
+
+[domain_realm]
+ .dev.hk = DEV.HK
+ dev.hk = DEV.HK
+```
+
+
+
 ## client
+
+### connection string
+
+```
+mongodb://mongouser%40DEV.HK@MBSINFOAS11-DIT.dev.hk:27017/?authMechanism=GSSAPI&authSource=%24external
+```
+
 ### Kerberos ticket manage
 
 ```powershell
@@ -101,14 +233,19 @@ Cached Tickets: (2)
         Session Key Type: RSADSI RC4-HMAC(NT)
         Cache Flags: 0
         Kdc Called: ewin2ww311-dit3.dev.hk
-        
-        
-
 ```
 
 
 
-# Trouble shot
+## check list
+
+- firewall 
+
+  Server Manager-->Local Server-->Windows defender firewall
+
+- time sync for all nodes
+
+# Troubleshot
 
 ## Was not able to acquire principal id from Cyrus SASL
 
@@ -152,4 +289,6 @@ https://learn.microsoft.com/en-us/troubleshoot/windows-server/active-directory/e
 
 ## 容器中配置sqlserver kerberos 连接
 
-https://learn.microsoft.com/th-th/sql/linux/sql-server-linux-ad-auth-understanding?view=sql-server-2017
+https://learn.microsoft.com/zh-cn/sql/linux/sql-server-linux-ad-auth-understanding?view=sql-server-2017
+
+https://documentation.suse.com/zh-cn/sles/15-SP2/html/SLES-all/cha-security-kerberos.html
