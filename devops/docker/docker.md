@@ -81,6 +81,16 @@ Server:
 
 # docker image
 
+## docker search
+
+```bash
+docker search 
+--filter is-official=true 
+--filter stars=3 busybox
+NAME      DESCRIPTION           STARS     OFFICIAL
+busybox   Busybox base image.   325       [OK]
+```
+
 ## docker images 
 
 ## docker pull
@@ -95,9 +105,29 @@ Server:
 
 ## docker ps 
 
+```bash
+docker ps #列出容器
+-a  #显示所有容器
+-l  #显示最新创建的容器（包括所有状态）
+-q  #仅显示容器 ID
+-s #显示文件总大小
+```
+
+
+
 ## docker run
 
-## docker inspect
+```bash
+docker run
+-d #以守护进程运行
+-v host-path:container-path #映射主机和容器卷
+-p host-port:container-port #端口映射
+--hostname #容器主机名
+--name #为容器指定名称
+--env VAR1=value1 #设置环境变量
+--network networkname #设置网络
+
+```
 
 ## docker exec
 ```bash
@@ -111,23 +141,99 @@ Server:
 
 ## docker logs <container>
 
+```bash
+docker logs [OPTIONS] CONTAINER
+-f, --follow: 跟随日志输出
+-t, --timestamps: 显示日志时间戳
+--tail: 10 仅显示日志的最后部分，例如 --tail 10 显示最后 10 行。
+```
+
+
+
 ## docker compose
 
 ## compose.yaml
 
-# Dockerfile
+### 配置
+
+```YAML
+version: "2"
+services:
+  nginx01:
+    restart: always
+    container_name: nginx_test01
+    image: mynginx
+    ports:
+      - 8081:80
+    networks:
+      - net1
+    volumes:
+      - /usr/local/nginx/www:/var/www
+
+  nginx02:
+    restart: always
+    container_name: nginx_test02
+    image: mynginx
+    ports:
+      - 8082:80
+    networks:
+      - net1
+    volumes:
+      - /usr/local/nginx/www:/var/www
+
+networks:
+ net1:  
+   external:
+     true #使用已经存在的，不是docker compose自动创建的
+```
+
+### 运行
+
+```shell
+docker-compose up -d 
+```
+
+
+
+
+
+## docker cp
 
 ```bash
-#查看容器
-docker ps #运行中的容器
-docker container ls  #运行中的容器
-docker container ls -a #所有容器
-#启动与停止容器
-docker stop -t 10 db57e08154fb
-docker start  db57e08154fb
-#修改容器名称
-docker rename mongodb mongodb_app
+#无论容器是否运行都可以拷贝
+docker cp my_container:/path/in/container /path/on/host
+
+docker cp /path/on/host my_container:/path/in/container
 ```
+
+## docker top
+
+```
+# 命令用于显示指定容器中的正在运行的进程
+docker top my_container
+```
+
+## docker rename
+
+```shell
+docker rename mongodb mongodb_app #修改容器名称
+```
+
+
+
+# docker inspect
+
+```bash
+# 命令用于获取 Docker 对象（容器、镜像、卷、网络等）的详细信息
+docker inspect my_container
+docker inspect my_image
+docker inspect my_volume
+docker inspect my_network
+#多个对象
+docker inspect my_container my_image
+```
+
+# Dockerfile
 
 # docker  network   
 
@@ -144,7 +250,93 @@ docker network inspect <bridge-name>
 ```
 
 
+
+
+
+```shell
+#查看宿主机在docker0上的ip
+suse01:~ # ip addr show docker0
+3: docker0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default 
+    link/ether 02:42:fe:4f:0d:cd brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::42:feff:fe4f:dcd/64 scope link 
+       valid_lft forever preferred_lft forever
+```
+
+
+
+~~~shell
+#查看docker中的网络
+suse01:~ # docker network list
+NETWORK ID     NAME                DRIVER    SCOPE
+77bcd1908c3e   bridge              bridge    local
+8361f6c05158   host                host      local
+fc3191df61e8   mongo-app-cluster   bridge    local
+
+
+~~~
+
+``` json
+//suse01:~ # docker network inspect bridge 
+[
+    {
+        "Name": "bridge",
+        "Id": "77bcd1908c3e0d5424406cca1a8b8d854603a3141051608542d7a11e20185ed3",
+        "Created": "2024-08-31T19:40:48.589041516+08:00",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "172.17.0.0/16",
+                    "Gateway": "172.17.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {
+            "20cc4597df70cb5431936a55e00e7009bc47054546817f1631f292d92c91014d": {
+                "Name": "nginx01",
+                "EndpointID": "d32c1f7651654396e3b3524f0b4cec7111ded1b06b45f4da5592e778c926e47d",
+                "MacAddress": "02:42:ac:11:00:02",
+                "IPv4Address": "172.17.0.2/16",
+                "IPv6Address": ""
+            },
+            "2dd809b1f2d67e5324c4a9548100283658b4fbe777c5119b961f0d454232b755": {
+                "Name": "nginx02",
+                "EndpointID": "9e7cb565691a209bf69214dac4cec8b1f685cbab563530b83c238016c88e9861",
+                "MacAddress": "02:42:ac:11:00:03",
+                "IPv4Address": "172.17.0.3/16",
+                "IPv6Address": ""
+            }
+        },
+        "Options": {
+            "com.docker.network.bridge.default_bridge": "true",
+            "com.docker.network.bridge.enable_icc": "true",
+            "com.docker.network.bridge.enable_ip_masquerade": "true",
+            "com.docker.network.bridge.host_binding_ipv4": "0.0.0.0",
+            "com.docker.network.bridge.name": "docker0",
+            "com.docker.network.driver.mtu": "1500"
+        },
+        "Labels": {}
+    }
+
+```
+
+
+
 # docker compse 
+
 1. 安装：https://docs.docker.com/engine/install/sles/#set-up-the-repository
 2. 阿里云加速:https://help.aliyun.com/zh/acr/user-guide/accelerate-the-pulls-of-docker-official-images
 3. https://docs.docker.com/compose/gettingstarted/
@@ -154,6 +346,37 @@ docker network inspect <bridge-name>
 docker network rm <bridge-name>
 ```
 # docker volume
+
+## mount 方式
+
+```shell
+docker run 
+-v my_named_volume:/path/in/container #具名挂载,把容器内的文件挂载出来
+-v contain-path #匿名挂载
+-v /host/path:/path/in/container #绑定挂载，将宿主机的文件挂载到容器中
+
+-v my_named_volume:/path/in/container:ro #只读挂载,只能通过宿主机修改
+-v my_named_volume:/path/in/container:rw #可读写
+```
+
+## 数据卷容器
+
+```
+docker run 
+--volumes-from another_docker
+```
+
+
+
+## 查看挂载
+
+```
+docker vlume ls
+docker volume inspect  volume_name
+```
+
+
+
 # docker compose
 
 # 部署Docker的Demo
@@ -255,3 +478,10 @@ docker run -d -p 8080:80 --name webapidemo webapidemo
 请注意，上面的命令将在名为 "webapidemo" 的容器中运行名为 "webapidemo" 的 Docker 镜像，并将容器的端口映射到主机的端口 8080 上。
 
 完成上述步骤后，您的 .NET Core Web API 项目应该已经成功地部署到 CentOS 服务器上了。
+
+
+
+
+
+
+
