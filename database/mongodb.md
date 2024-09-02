@@ -25,11 +25,24 @@ database>collection>document
 
 
 
+# keyFile
+```bash
+#生成keyfile
+$ openssl rand -base64 756 > mongodb.keyfile
+
+```
+
+
+# cfg
+```yaml
+
+```
+
 # 安装
 
 ```
  #windows上以服务的方式启动mongod
- .\mongod.exe --config "C:\mongodb\replset1\mongod1.conf"  --install --serviceName mongodb28017 --serviceDisplayName mongodb28017
+ mongod.exe --config "F:\mongodb\Node1\cfg\mongod.cfg"  --install --serviceName mongodb27018 --serviceDisplayName mongodb27018 --serviceUser 'mongouser@dev.hk' --servicePassword '0000abc!'
 ```
 
 
