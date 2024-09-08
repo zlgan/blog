@@ -126,19 +126,34 @@ mongo.mongoUri=mongodb://127.0.0.1:27001,127.0.0.1:27002,127.0.0.1:27003/?replic
 systemctl status mongodb-mms
 #systemctl start  mongodb-mms
 
+#如果服务没有启动可以手工启动服务
+/opt/mongodb/mms/bin/mongodb-mms start
+
 #查看日志：
   Invalid config: Attempting to import cluster process as standalone  
 
-
 #查看配置
- 
-#手工启动服务
-/opt/mongodb/mms/bin/mongodb-mms start
-
 ```
 
 ## 3.在http://<host>:8080注册第一个用户
+
+```
+mongoadmin / 0000abc!
+
+```
+
+
+
 ## 4.配置ops manager
+
+#### 设置Web 服务器
+
+#### 设置电子邮件服务器
+
+
+
+
+
 ## 5.从ops manager页面下载并安装Agent
 - Monitoring Agent
 - Backup Agent ，默认处于休眠状态，知道主动启动

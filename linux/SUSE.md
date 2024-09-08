@@ -144,6 +144,25 @@ i+ | mongodb-mms | MongoDB Ops Manager | package
 
 ```
 
+```shell
+zypper addrepo -f http://mirrors.aliyun.com/opensuse/distribution/leap/15.5/repo/oss/ openSUSE-15.5-Oss 
+zypper addrepo -f http://mirrors.aliyun.com/opensuse/update/leap/15.5/oss openSUSE-15.5-Update-Oss
+zypper addrepo -f https://mirrors.aliyun.com/opensuse/distribution/openSUSE-current/repo/non-oss/ ali-opensuse-current-dist-non-oss
+zypper addrepo -f https://mirrors.aliyun.com/opensuse/distribution/openSUSE-current/repo/oss/ ali-opensuse-current-dist-oss 
+
+
+
+sudo zypper mr -d repo-oss
+sudo zypper mr -d repo-non-oss
+sudo zypper mr -d repo-update
+sudo zypper mr -d repo-update-non-oss
+
+```
+
+
+
+
+
 ## rpm管理
 
 -`q`: query（查询），用于查询软件包。
