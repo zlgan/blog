@@ -128,6 +128,23 @@ Some actions do not make sense in Ad-Hoc (include, meta, etc)
 
 # 管理远程节点
 
+## 配置Python解释器
+
+>ansibile会在管理的节点上查找python解释器：
+>
+>[WARNING]: Platform linux on host 192.168.8.32 is using the discovered Python interpreter at /usr/bin/python3.6, but future installation of another Python interpreter could change the meaning of that path. See
+>https://docs.ansible.com/ansible-core/2.16/reference_appendices/interpreter_discovery.html for more information.
+
+```ini
+#/etc/ansible/ansible.cfg 
+#添加如何配置，消除警告
+#在被控制节点上自动选择python解释器
+[defaults]
+interpreter_python=auto_silent
+```
+
+
+
 ## 配置主机列表 hosts 
 
 ```
@@ -201,6 +218,8 @@ ssh-copy-id -i <pub-key-path> "-o StrictHostKeyChecking=no" remoteuser@remotehos
 
 ## 与远程主机交互
 
+### command 模块
+
 ```shell
 #查看主机名
 root@ubuntu01:~# ansible leo -m command -a 'hostname'
@@ -214,7 +233,317 @@ suse02
 root@ubuntu01:~# ansible leo -m command -a 'uname -a'
 192.168.8.32 | CHANGED | rc=0 >>
 Linux suse02 5.14.21-150500.53-default #1 SMP PREEMPT_DYNAMIC Wed May 10 07:56:26 UTC 2023 (b630043) x86_64 x86_64 x86_64 GNU/Linux
+
+
+#查看远程主机的内存信息，默认-m command 省略
+root@ubuntu01:~# ansible leo  -a "free -m" 
+[WARNING]: Platform linux on host 192.168.8.32 is using the discovered Python interpreter at /usr/bin/python3.6, but
+future installation of another Python interpreter could change the meaning of that path. See
+https://docs.ansible.com/ansible-core/2.16/reference_appendices/interpreter_discovery.html for more information.
+192.168.8.32 | CHANGED | rc=0 >>
+              total        used        free      shared  buff/cache   available
+Mem:           3924         536        3032          16         592        3388
+Swap:          2048           0        2048
+
+
+#进入/opt目录并创建文件
+root@ubuntu01:~# ansible leo -a "touch test.log chdir=/opt"
+oot@ubuntu01:~# ansible leo -a "ls /opt"
+
+
+
+
+
+
 ```
+
+### shell 模块
+
+> 支持管道符，重定向，等复杂操作
+
+```bash
+root@ubuntu01:~# ansible leo -m shell -a  "ps -ef | grep ssh" 
+192.168.8.32 | CHANGED | rc=0 >>
+root      1374     1  0 06:55 ?        00:00:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+root     15309  1374  1 07:21 ?        00:00:00 sshd: root@pts/0
+root     15499 15498  0 07:21 pts/0    00:00:00 /bin/sh -c ps -ef | grep ssh
+root     15501 15499  0 07:21 pts/0    00:00:00 grep ssh
+
+
+root@ubuntu01:~# ansible leo -m shell -a  "date >/tmp/test.log && cat /tmp/test.log" 
+192.168.8.32 | CHANGED | rc=0 >>
+Thu 12 Sep 2024 07:23:11 AM CST
+
+
+#1.创建文件
+#2.写入命令到指定的文件
+#3.文件权限设置
+#4.执行文件中的命令
+root@ubuntu01:~# ansible leo -m shell -a  "rm -rf /tmp/001;mkdir /tmp/001/;echo 'hostname' >/tmp/001/test.sh;chmod +x /tmp/001/test.sh;/tmp/001/test.sh;" 
+192.168.8.32 | CHANGED | rc=0 >>
+suse02
+
+
+```
+
+
+
+
+
+## 查看帮助
+
+```powershell
+
+
+
+
+root@ubuntu01:~# ansible-doc -s command 
+- name: Execute commands on targets
+  command:
+      argv:                  # Passes the command as a list rather than a string. Use `argv' to avoid quoting values
+                             # that would otherwise be interpreted incorrectly (for
+                             # example "user name"). Only the string (free form) or the
+                             # list (argv) form can be provided, not both.  One or the
+                             # other must be provided.
+      chdir:                 # Change into this directory before running the command.
+      cmd:                   # The command to run.
+      creates:               # A filename or (since 2.0) glob pattern. If a matching file already exists, this step
+                             # *will not* be run. This is checked before `removes' is
+                             # checked.
+      expand_argument_vars:   # Expands the arguments that are variables, for example `$HOME' will be expanded before
+                             # being passed to the command to run. Set to `false' to
+                             # disable expansion and treat the value as a literal
+                             # argument.
+      free_form:             # The command module takes a free form string as a command to run. There is no actual
+                             # parameter named 'free form'.
+      removes:               # A filename or (since 2.0) glob pattern. If a matching file exists, this step *will* be
+                             # run. This is checked after `creates' is checked.
+      stdin:                 # Set the stdin of the command directly to the specified value.
+      stdin_add_newline:     # If set to `true', append a newline to stdin data.
+      strip_empty_ends:      # Strip empty lines from the end of stdout/stderr in result.
+
+```
+
+
+
+# 常用模块
+
+## 修改默认模块
+
+## file 
+
+```shell
+#创建文件
+root@ubuntu01:~# ansible leo -m file -a  'path=/tmp/test.txt state=touch'
+192.168.8.33 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.6"
+    },
+    "changed": true,
+    "dest": "/tmp/test.txt",
+    "gid": 0,
+    "group": "root",
+    "mode": "0644",
+    "owner": "root",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+192.168.8.32 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.6"
+    },
+    "changed": true,
+    "dest": "/tmp/test.txt",
+    "gid": 0,
+    "group": "root",
+    "mode": "0644",
+    "owner": "root",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+
+```
+
+## copy
+
+```bash
+#将assible controller上的文件拷贝到目标节点
+ansible leo -m copy -a 'src=/tmp/copytest.txt dest=/tmp/copytest.txt'
+192.168.8.33 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.6"
+    },
+    "changed": true,
+    "checksum": "f95b96b4305fa8b945f08c9a5c2737ac34d76bf2",
+    "dest": "/tmp/copytest.txt",
+    "gid": 0,
+    "group": "root",
+    "md5sum": "9d487327496f2375e14dfba392337f96",
+    "mode": "0644",
+    "owner": "root",
+    "size": 14,
+    "src": "/root/.ansible/tmp/ansible-tmp-1726414951.667462-18358-239437729040879/source",
+    "state": "file",
+    "uid": 0
+}
+192.168.8.32 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.6"
+    },
+    "changed": true,
+    "checksum": "f95b96b4305fa8b945f08c9a5c2737ac34d76bf2",
+    "dest": "/tmp/copytest.txt",
+    "gid": 0,
+    "group": "root",
+    "md5sum": "9d487327496f2375e14dfba392337f96",
+    "mode": "0644",
+    "owner": "root",
+    "size": 14,
+    "src": "/root/.ansible/tmp/ansible-tmp-1726414951.6746578-18357-87924817583296/source",
+    "state": "file",
+    "uid": 0
+}
+
+```
+
+
+
+## Cron--计划任务
+
+/var/spool/cron/root   这个目录的作用？
+
+## zypper模块  
+
+>安装软件
+
+```bash
+#install
+ansible leo -m zypper -a 'name=nginx state=present'
+#uninstall
+ansible leo -m zypper -a 'name=nginx state=absent'
+
+```
+
+
+
+## service  
+
+> 管理服务
+
+# playbook
+
+## 核心元素
+
+### hosts   
+
+### tasks
+
+### variables
+
+### templates 
+
+### handlers 
+
+### tags 
+
+##  asible-playbook
+
+```BASH
+ansible-playbook pintest.yml  
+ansible-playbook pintest.yml  --limit 192.168.8.32
+```
+
+## ansible-galaxy 
+
+
+
+## 范例 
+
+### 测试1
+
+```yaml
+#pingTest.yml
+---
+- hosts: leo
+  remote_user: root
+  tasks:
+    - name: ping_test
+      ping:  
+```
+
+```bash
+root@ubuntu01:~/playbooks# ansible-playbook pingTest.yml
+
+PLAY [leo] ***********************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************
+ok: [192.168.8.33]
+ok: [192.168.8.32]
+
+TASK [ping_test] *****************************************************************************************************
+ok: [192.168.8.33]
+ok: [192.168.8.32]
+
+PLAY RECAP ***********************************************************************************************************
+192.168.8.32               : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.8.33               : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0 
+```
+
+### 测试2
+
+```YAML
+---
+# install nginx
+- hosts: leo
+  remote_user: root
+  tasks:
+    - name: add group nginx
+      user: name=nginx state=present
+    - name: add user nginx
+      user: name=nginx state=present group=nginx
+    - name: install nginx
+      zypper: name=nginx state=present
+    - name: start nginx
+      service: name=nginx state=started enabled=yes
+```
+
+
+
+
+
+```
+root@ubuntu01:~/playbooks# ansible leo -a 'ss -ntl'
+192.168.8.33 | CHANGED | rc=0 >>
+State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess
+LISTEN 0      128     192.168.8.33:27017      0.0.0.0:*          
+LISTEN 0      128        127.0.0.1:27017      0.0.0.0:*          
+LISTEN 0      4096         0.0.0.0:80         0.0.0.0:*          
+LISTEN 0      128          0.0.0.0:22         0.0.0.0:*          
+LISTEN 0      100        127.0.0.1:25         0.0.0.0:*          
+LISTEN 0      128             [::]:22            [::]:*          
+LISTEN 0      100            [::1]:25            [::]:*          
+192.168.8.32 | CHANGED | rc=0 >>
+State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess
+LISTEN 0      128     192.168.8.32:27017      0.0.0.0:*          
+LISTEN 0      128        127.0.0.1:27017      0.0.0.0:*          
+LISTEN 0      4096         0.0.0.0:80         0.0.0.0:*          
+LISTEN 0      128          0.0.0.0:22         0.0.0.0:*          
+LISTEN 0      100        127.0.0.1:25         0.0.0.0:*          
+LISTEN 0      128             [::]:22            [::]:*          
+LISTEN 0      100            [::1]:25            [::]:* 
+```
+
+
+
+- 层次关系：
+
+  playbook---task--module
+
+
+
+
 
 # ref
 

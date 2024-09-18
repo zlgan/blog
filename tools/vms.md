@@ -2,10 +2,10 @@
 
 | Host        | Account                      | IP           | service | Roles     |
 | ----------- | ---------------------------- | ------------ | ------- | --------- |
-| Suse01      | root/root                    |              |         |           |
-| Suse02      | root/root                    |              |         |           |
-| Suse03      | root/root                    |              |         |           |
-| Suse04      | root/root                    |              |         |           |
+| Suse01      | root/root                    | 192.168.8.31 |         |           |
+| Suse02      | root/root                    | 192.168.8.32 |         |           |
+| Suse03      | root/root                    | 192.168.8.33 |         |           |
+| Suse04      | root/root                    | 192.168.8.34 |         |           |
 | node11      |                              |              |         |           |
 | node12      |                              |              |         |           |
 | node13      |                              |              |         |           |

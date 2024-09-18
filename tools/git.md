@@ -1,3 +1,40 @@
+# 分支管理
+
+##  创建分支
+
+###  本地分支到远程
+
+``` bash
+git checkout master
+git checkout -b feature1
+git push --set-upstream  origin feature2 #将本地分支feature2推送到远程，并新建同名分支（如果不存在）
+git push --set-upstream origin feature2:feature3 #将本地分支feature2推送到远程，并新建分支feature3（如果不存在）
+```
+
+### 远程分支到本地
+
+```bash
+git pull
+git branch -a
+  feature1
+  remotes/origin/dev
+git checkout -b dev2 origin/dev #新建本地dev2分支并跟踪远程分支
+```
+
+## 删除分支
+
+### 删除本地分支
+
+### 删除远程分支 
+
+### 删除本地和远程
+
+
+
+# Worktree
+
+
+
 # 实践
 
 ## 撤销工作区的变更
@@ -8,9 +45,8 @@ git clean
 件
 ```
 
-## 
+# git log
 
-## git log
 ```bash
 git log  # 查看log日志 
 git log --pretty=oneline #显示完整的hash

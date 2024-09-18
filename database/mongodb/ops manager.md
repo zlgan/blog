@@ -76,6 +76,33 @@ docker run --name mongodb_app3 -p 27003:27017 -d -v /var/opsmanager/appdb/node3/
 
 ```
 
+```yaml
+#docker-compose.yaml方式部署
+services:
+  mongodb_app4:
+    image: mongodb/mongodb-enterprise-server:latest
+    container_name: mongodb_app4
+	restart: always
+	networks:
+	  - mongo-app-cluster
+    ports:
+      - "27004:27017"
+    volumes:
+      - /var/opsmanager/appdb/node4/data:/data/data
+      - /var/opsmanager/appdb/node4/log:/data/log
+      - /var/opsmanager/appdb/node4/conf:/data/conf
+    ulimits:
+      nofile:
+        soft: 64000
+        hard: 64000
+    command: "--config /data/conf/mongod.conf"
+networks:
+  mongo-app-cluster:
+    external: true	
+```
+
+
+
 1.6 初始化副本集
 
 ```bash

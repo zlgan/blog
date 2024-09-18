@@ -1,4 +1,3 @@
-
 --EDA
 https://aws.amazon.com/cn/what-is/eda/
 https://solace.com/what-is-event-driven-architecture/
@@ -348,6 +347,23 @@ Get-Module 是一个 PowerShell 命令，用于列出当前会话中已加载的
 获取当前时间戳
 
 [System.DateTimeOffset]::UtcNow.ToUnixTimeSeconds()
+
+
+
+
+
+- openstack （Iaas 的框架)
+- kubernetes（Paas的框架）
+
+
+
+liveness : 存活检测，如果检测不通过则重启pod
+
+readiness：就绪探针，对于未就绪的pod，防止service将流量导入到该pod
+
+
+
+
 
 
 
