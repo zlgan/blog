@@ -217,3 +217,46 @@ Distribution: (none)
 
 ```
 
+# 应用
+
+## 通过nfs挂载远程仓库
+
+### 服务器配置
+
+```bash
+#安装 NFS 服务端
+zypper install nfs-kernel-server
+systemctl start nfsserver
+systemctl enable nfsserver
+
+#配置共享目录
+#编辑文件 /etc/exports，写入
+/data/repo  *(ro,sync,no_subtree_check)
+
+#重新加载 NFS 配置
+exportfs -r
+
+#要共享的文件拷贝到 /data/repo 目录
+
+```
+
+### 客户端配置
+
+```bash
+#安装nfs客户端
+zypper install nfs-client
+
+# 创建一个挂载点并挂载
+mkdir -p /mnt/repo
+mount suse02:/srv/repo /mnt/repo
+
+# 将本地目录添加到zypper仓库
+zypper ar file:///mnt/repo local_repo
+zypper ref
+
+# 从制定仓库安装
+zypper install --from local_repo zsh
+```
+
+
+

@@ -1,3 +1,25 @@
+# 其他
+
+
+
+Prometheus 普罗米修斯 --系统监控
+
+容器：podman，docker
+
+配置管理：ansible，saltstack（需要代理）
+
+日志：elk，splunk
+
+cmdb 配置管理数据库？
+
+
+
+三个关键模块
+
+1. Paramiko
+2. PyYAML
+3. Jinja2（模板语言）
+
 # 安装
 
 https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.html#installing-ansible-on-ubuntu
@@ -126,6 +148,21 @@ Some actions do not make sense in Ad-Hoc (include, meta, etc)
 
 
 
+```bash
+root@ubuntu01:/# ansible --version
+ansible [core 2.16.10]
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/root/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3/dist-packages/ansible
+  ansible collection location = /root/.ansible/collections:/usr/share/ansible/collections
+  executable location = /usr/bin/ansible
+  python version = 3.12.3 (main, Sep 11 2024, 14:17:37) [GCC 13.2.0] (/usr/bin/python3)
+  jinja version = 3.1.2
+  libyaml = True
+```
+
+
+
 # 管理远程节点
 
 ## 配置Python解释器
@@ -147,7 +184,7 @@ interpreter_python=auto_silent
 
 ## 配置主机列表 hosts 
 
-```
+```bash
 root@ubuntu01:~# cat /etc/ansible/hosts 
 # This is the default ansible 'hosts' file.
 #
@@ -202,10 +239,23 @@ root@ubuntu01:~# cat /etc/ansible/hosts
 ## [openSUSE]
 ## green.example.com
 ## blue.example.com
-[leo]
+[apps]
 192.168.8.32
 
+[dbs]
+192.168.8.33
+
 ```
+
+
+
+```
+ansible #执行单条命令
+ansible-doc  # 查看帮助
+ansible-playbook #执行playbook
+```
+
+
 
 ## 设置ssh公钥免密登录
 
@@ -292,12 +342,17 @@ suse02
 
 ## 查看帮助
 
+ ansible-doc  --list 查看所有模块
+
+
+
 ```powershell
 
+# ansible-doc  command  #查看帮助信息
+root@ubuntu01:~# ansible-doc -s command  #查看简化的帮助
 
 
 
-root@ubuntu01:~# ansible-doc -s command 
 - name: Execute commands on targets
   command:
       argv:                  # Passes the command as a list rather than a string. Use `argv' to avoid quoting values
@@ -326,15 +381,95 @@ root@ubuntu01:~# ansible-doc -s command
 
 
 
+# 配置
+
+```bash
+root@ubuntu01:~# cat /etc/ansible/ansible.cfg
+# Since Ansible 2.12 (core):
+# To generate an example config file (a "disabled" one with all default settings, commented out):
+#               $ ansible-config init --disabled > ansible.cfg
+#
+# Also you can now have a more complete file by including existing plugins:
+# ansible-config init --disabled -t all > ansible.cfg
+
+# For previous versions of Ansible you can check for examples in the 'stable' branches of each version
+# Note that this file was always incomplete  and lagging changes to configuration settings
+
+# for example, for 2.9: https://github.com/ansible/ansible/blob/stable-2.9/examples/ansible.cfg
+[defaults]
+interpreter_python=auto_silent
+module_name=shell #修改默认模块
+log_path=/var/log/ansible.log #日志文件位置
+```
+
+
+
+# ansible 命令
+
+```bash
+# 列出主机清单 --list-hosts
+root@ubuntu01:/# ansible "*" --list-hosts
+  hosts (2):
+    192.168.8.32
+    192.168.8.33
+    
+# -vvv 控制输出的详细程度
+
+
+
+```
+
+
+
+
+
+# ansible 工具
+
+## ansible-galaxy
+
+## ansible-vault  加解密
+
+## ansible-console  进入交互模式
+
+```bash
+root@all (2)[f:5]$ list
+192.168.8.32
+192.168.8.33
+```
+
+
+
 # 常用模块
 
 ## 修改默认模块
+
+## ping
+
+```bash
+root@ubuntu01:/# ansible all  -m ping
+192.168.8.33 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.6"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+192.168.8.32 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.6"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+```
+
+
 
 ## file 
 
 ```shell
 #创建文件
-root@ubuntu01:~# ansible leo -m file -a  'path=/tmp/test.txt state=touch'
+root@ubuntu01:~# ansible all -m file -a  'path=/tmp/test.txt state=touch'
 192.168.8.33 | CHANGED => {
     "ansible_facts": {
         "discovered_interpreter_python": "/usr/bin/python3.6"
@@ -431,6 +566,10 @@ ansible leo -m zypper -a 'name=nginx state=absent'
 ## service  
 
 > 管理服务
+
+## script 
+
+脚本推送到被控制端执行
 
 # playbook
 
@@ -542,6 +681,8 @@ LISTEN 0      100            [::1]:25            [::]:*
   playbook---task--module
 
 
+
+# 模板
 
 
 

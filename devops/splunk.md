@@ -9,6 +9,23 @@
 # 安装部署
 1.https://cloud.tencent.com/developer/article/1900495
 
+## docker安装
+
+https://hub.docker.com/r/splunk/splunk/
+
+```powershell
+$ docker run -d -p 8000:8000 -p 8088:8088 -e "SPLUNK_START_ARGS=--accept-license" -e "SPLUNK_PASSWORD=0000abc!" --name splunk2 splunk/splunk:latest
+
+```
+
+
+
+
+
+
+
+​	
+
 
 
 # push

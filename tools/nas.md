@@ -18,3 +18,29 @@ synouser --setpw root 密码
 
 - https://blog.miniasp.com/post/2022/10/04/Synology-NAS-CLI-Administrator-Guide
 
+
+
+
+
+## synoservice 
+
+### docker
+
+```bash
+ #查看docker的运行状态
+root@Nas:/# synoservice --status | grep -i docker
+service [pkgctl-Docker] status=[error]
+	[pkgctl-Docker] is stop. 
+```
+
+# docker
+
+## 配置文件
+
+```bash
+#docker 配置 
+/var/packages/Docker/etc/dockerd.json
+
+
+```
+

@@ -280,7 +280,7 @@ categories: Linux
 │   ├── kernel
 │   ├── module
 │   └── power
-├── tmp
+├── tmp #存放临时文件
 │   ├── vmware-root_908-2688685236
 │   └── vmware-root_911-4013199080
 
@@ -290,15 +290,15 @@ categories: Linux
 │   ├── etc
 │   ├── games
 │   ├── include
-│   ├── lib
+│   ├── lib #共享库和程序文件。
 │   ├── lib64
 │   ├── libexec
 │   ├── local
 │   ├── sbin #超级用户使用的比较高级的管理程序和系统守护程序
-│   ├── share
+│   ├── share#共享的文件资源（如文档、帮助文件）
 │   ├── src #内核源代码默认的放置目录
 │   └── tmp -> ../var/tmp
-└── var #var 是 variable(变量) 的缩写，这个目录中存放着在不断扩充着的东西，我们习惯将那些经常被修改的目录放在这个目录下。包括各种日志文件
+└── var #var 是 variable(变量) 的缩写，这个目录中存放着在不断扩充着的东西，我们习惯将那些经常被修改的目录放在这个目录下。包括日志文件、临时文件、缓存数据等
     ├── account
     ├── adm
     ├── cache
@@ -319,7 +319,7 @@ categories: Linux
     ├── preserve
     ├── run -> ../run
     ├── spool
-    ├── tmp
+    ├──  tmp
     └── yp
 
 ```
