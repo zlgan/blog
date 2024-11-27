@@ -361,6 +361,15 @@ liveness : 存活检测，如果检测不通过则重启pod
 
 readiness：就绪探针，对于未就绪的pod，防止service将流量导入到该pod
 
+# 20241127
+- meeting
+https://events.mongodb.com/sparklingsoireehkjc
+
+- vs2022 profile
+https://learn.microsoft.com/zh-cn/visualstudio/profiling/instrumentation?view=vs-2022&wt.mc_id=visualstudio_inproduct_aka_vs17instrumentationtool
+
+
+
 
 
 
