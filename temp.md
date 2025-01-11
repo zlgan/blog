@@ -374,11 +374,35 @@ https://learn.microsoft.com/zh-cn/visualstudio/profiling/instrumentation?view=vs
 
 
 
+本地认证
 
+NTLMHash(password)== sam
 
+工作组计算机认证
 
+NTLMV2 Challenge/Reponse
 
+- 协议版本协商 NTLMv1 or  NTMLv2
+- client 发送用户名到server
+- server
+  -  NTLM Hash(Challenge)=challenge1 
+  - 发送challenge到clent
+- client 使用密码生成NTLM Hash并且计算challenge的哈希，然后返回给server
+- server 对比challenge1与client的响应，如果相同则通过，否则不通过
 
+域计算机认证
+
+![image-20241214135109898](E:\workspace\blog\assets\image-20241214135109898.png)
+
+![image-20241214135232297](E:\workspace\blog\assets\image-20241214135232297.png)
+
+ 
+
+![image-20241214135431704](E:\workspace\blog\assets\image-20241214135431704.png)
+
+![image-20241214141407695](E:\workspace\blog\assets\image-20241214141407695.png)
+
+![image-20241214141454765](E:\workspace\blog\assets\image-20241214141454765.png)
 
 
 
