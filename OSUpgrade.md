@@ -1,4 +1,5 @@
 # uefi、bios设置
+1. 关闭UEFI的安全启动选项		
 # windows启动盘制作
 # debian启动盘制作
 # 磁盘分区
@@ -17,22 +18,4 @@
 
 # windows设置
 
-
-
-
-
-系统	分区名	文件系统	大小（MB）
-win	re（恢复分区)		600
-win	boot（引导分区)	FAT32	1024
-win	windows（系统分区)	NTFS	204800
-win			
-linux	\		
-linux	boot（引导分区)	与win 共用	0
-linux	swap	swap	8192
-    /usr	ext4	
-    /opt	ext4	
-    /var	ext4	
-    /home	ext4	
-            
-windows 的电源管理中关闭快速启动			
-关闭UEFI的安全启动选项			
+1. windows 的电源管理中关闭快速启动			
