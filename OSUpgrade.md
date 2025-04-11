@@ -19,3 +19,27 @@
 # windows设置
 
 1. windows 的电源管理中关闭快速启动			
+
+
+
+# folder tree
+
+study
+    cantonnese
+    drum 
+vm
+    suse01
+    suse02
+    suse03
+    winServer01
+work
+    hkjc
+manual
+    printer
+    computer
+hobby
+
+download
+    chrome
+    wechat
+    baiduNetDisk
