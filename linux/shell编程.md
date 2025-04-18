@@ -7,8 +7,6 @@
 /bin/dash
 /usr/bin/dash
 
-
-
 # history
 
 history -w 将缓存中的命令写入  .bashhistory文件中
@@ -28,8 +26,6 @@ alias 别名=‘原命令’
 alias #查看命令别名
 /root/.bashrc #别名永久生效要保存到该文件中
 ```
-
-
 
 ## 环境变量 $PATH
 
