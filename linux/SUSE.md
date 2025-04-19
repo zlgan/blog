@@ -1,8 +1,5 @@
 
-
-# 系统信息查看
-
-## 查看发行版信息
+# 查看发行版信息
 ```bash
 suse01:/ # cat /etc/os-release 
 NAME="openSUSE Leap"
@@ -18,7 +15,8 @@ HOME_URL="https://www.opensuse.org/"
 DOCUMENTATION_URL="https://en.opensuse.org/Portal:Leap"
 LOGO="distributor-logo-Leap"
 ```
-# 网络接口配置
+# 网络管理
+## 网络接口配置
 
 ```bash
   ip addr  #显示网络接口信息
@@ -35,7 +33,7 @@ LOGO="distributor-logo-Leap"
   sudo ip link set dev eth0 nomaster #将网卡eth0从网桥br0中移除
   sudo ip link set dev eth0 type vlan id 10 #将网卡eth0设置为VLAN模式，并设置VLAN ID为10  
 ```
-  ## 命令行查看网络配置信息
+  ## ip 命令行查看网络配置信息
   ```bash
   ip addr show  #显示网络接口信息
   ip route show  #显示路由表信息
@@ -46,31 +44,23 @@ LOGO="distributor-logo-Leap"
   ip netstat  #显示网络连接信息
   ```
 
-  ## 配置ip
+  ## 配置网络基本信息
   /etc/sysconfig/network/ifcfg-eth0
 
   ```bash
-  IPADDR=192.168.1.11
-  NETMASK=255.255.255.0
+  IPADDR='192.168.1.11/24' #ip地址和子网掩码
+  BOOTPROTO='static' #静态ip
+  STARTMODE='auto' # 开机自动启动
+
   ```
 ## 配置网关
-/etc/sysconfig/network/routes
+/etc/sysconfig/network/ifroute-eth0
 ```bash
-default 192.168.1.1 --
+default 192.168.1.1 - eth0
 ```
-2. 系统管理工具：Yast
-
-```bash
-#查看端口占用情况
-ss -tuln
-lsof -i -P -n
-
-#关闭防火墙
+## 防火墙设置
 sudo systemctl stop firewalld
 sudo systemctl disable firewalld
-
-```
-
 =======
 
 ## 配置DNS
@@ -78,20 +68,7 @@ sudo systemctl disable firewalld
 ```bash
 nameserver 8.8.8.8 
 ```
-
-
-# OpenSUSE Linux 查看防火墙配置
-```bash
-SuSEfirewall2 status #查看防火墙设置
-SuSEfirewall2 start #启用防火墙
-SuSEfirewall2 stop #禁用防火墙
-SuSEfirewall2 restart #重启防火墙
-SuSefirewall2 show #查看防火墙规则
-SuSEfirewall2 status #查看防火墙状态
-```
-修改防火墙配置规则：/etc/sysconfig/SuSEfirewall2 
-
-# 端口查看 ss（Socket Statistics）/netstat
+## 端口查看 ss（Socket Statistics）
 ```bash
 ss -t #TCP连接
 ss -u #UDP链接
@@ -105,18 +82,7 @@ ss src 10.0.0.1
 显示与指定进程ID相关联的连接：
 ss -p pid 1234
 
-netstat -a #显示所有端口
-netstat -t #tcp端口 
-netstat -u #显示所有UDP端口
-netstat -l #仅显示监听端口
-netstat -pl #显示所有端口和进程ID
-netstat -r #显示路由表信息
-netstat -s #显示网络统计信息
-netstat -tunlp | grep 8080 #查看8080端口
-netstat -tunlp 
-netstat -anp | grep 8080 #查看8080端口  
 ```
-
 # 用户管理：
   sudo id 显示当前登录用户
   sudo passwd 修改密码
