@@ -24,3 +24,4 @@ Add-AppxPackage -RegisterByFamilyName -MainPackage Microsoft.DesktopAppInstaller
 > winget download --id Microsoft.PowerToys --scope machine --architecture x64 --download-directory <Path>
 
 
+ winget --info

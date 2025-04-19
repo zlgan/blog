@@ -206,3 +206,11 @@ p .md-image:only-child{
 # 安装插件
 
 [GitHub - obgnail/typora_plugin: Typora plugin. Feature enhancement tool | Typora 插件，功能增强工具](https://github.com/obgnail/typora_plugin)
+
+
+
+
+
+# 找回license
+
+https://store.typora.io/my
