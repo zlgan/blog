@@ -1,16 +1,10 @@
-# create new branch and worktree
-```bash
-#git worktree add <新路径> -b <新分支名> <指定分支名>
-$ git worktree add -b feature_mongodb_entity ../worktree/feature_mongodb_entity
-```
+# 拉取远程分支信息
+git fetch origin
 
-# list wroktree
-```bash
-$ git worktree list
-E:/workspace/code/myProject/project                          3cf1553 [main]
-```
+# 创建新工作区feature-aaa并关联远程分支
+git worktree add -b feature/aaa ../feature-aaa origin/feature/aaa
 
-# delete worktree 
-```bash
-
-```
+# 进入新工作区并验证
+cd ../feature-aaa
+git status  # 确认分支状态
+git push -u origin feature/aaa  # 首次推送本地分支到远程（若需要）
