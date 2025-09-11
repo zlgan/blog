@@ -410,21 +410,24 @@ NTLMV2 Challenge/Reponse
 https://www.noi.cn/upload/resources/file/2023/03/15/1fa58eac9c412e01ce3c89c761058a43.pdf
 
 https://hkoi.org/zh/cspjs-past-problems/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+vim
+ 查找类：
+ 13     * 查找光标所在的单词（向上查找）
+ 14     # 查找光标所在的单词（向下查找）
+ 15 删除类
+ 16     x 删除一个字母（向右)
+ 17     X 删除一个字母（向)
+ 18     . 重复之前的命令
+ 19     c (change): cw c2w ci" ca" cc
+ 20     C 删除光标至行尾并进入插入模式
+ 21     s 删除光标所在的字符并进入插入模式
+ 22     S 删除当前行并进入插入模式(同cc)
+ 23 缩进
+ 24     >> 向右缩进
+ 25     << 向左缩进
+ 26     2<< 两行向左缩进
+ 27
+ 28     2<< 两行向左缩进
+ 29 操作包裹的字符
+ 30     1. vi yi di ci
+ 31     2. va ya da ca          
