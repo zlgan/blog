@@ -432,18 +432,3 @@ vim
  30     1. vi yi di ci
  31     2. va ya da ca          
 
-# minApp
-1. 了解微信小程序开发流程（wxml，wxss，js，json）
-2. 通读小程序的开发文档
-3. 后端使用腾讯云开发(云数据库，云函数，云存储，CDN)
-4. 熟悉微信开发者工具
-1. 了解figma（Figma AI Bridge） 原型设计
-1. Playwright自动化测试
-1. 熟悉一下cursor开发工具的使用
-5.了解AI编码的知识：
-  - 了解 mcp agent llm 的关系
-  - npx,uvx的使用
-  - trae的开发文档
-
-## 功能
-1.
